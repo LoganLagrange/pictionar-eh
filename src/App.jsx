@@ -3,7 +3,7 @@
 import Homepage from "./pages/home"
 
 function App() {
-  const [count, setCount] = useState(0)
+  // const [count, setCount] = useState(0)
 
   return (
     <>
