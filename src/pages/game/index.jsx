@@ -1,7 +1,7 @@
 import React from 'react';
 import "./style.css"
 
-export default function Card(props) {
+export default function Game(props) {
   const styles = {
     gamepageStyles: {
       background: 'red',
