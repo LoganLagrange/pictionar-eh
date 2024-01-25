@@ -1,5 +1,8 @@
 import React from 'react';
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
+import "./style.css"
+import API from "../../utils/API"
 
 function Homepage() {
   const headerStyle = {
@@ -13,6 +16,16 @@ function Homepage() {
     fontSize: '24px',
     marginBottom: '20px',
   };
+
+function Homepage() {
+  useEffect(()=>{
+    API.getAllAnswers().then(answerData=>{
+      console.log(answerData);
+    }).catch(err=>{
+      console.log(err)
+    })
+  })
+
     return (
       <header style={headerStyle} className="header">
         <h1 style={headingStyle}>Welcome to Pictionar-eh</h1>

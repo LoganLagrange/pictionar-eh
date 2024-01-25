@@ -1,10 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Homepage from "./pages/home/homepage";
+import Homepage from "./pages/home";
 import JoinRoom from './components/RoomForm';
 // import CreateRoom from './components/RoomForm';
 
 function App() {
+
   return (
     <Router>
       <Routes>
