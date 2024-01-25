@@ -1,4 +1,3 @@
-import React from 'react';
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import "./style.css"
@@ -17,7 +16,6 @@ function Homepage() {
     marginBottom: '20px',
   };
 
-function Homepage() {
   useEffect(()=>{
     API.getAllAnswers().then(answerData=>{
       console.log(answerData);
@@ -40,6 +38,7 @@ function Homepage() {
       </header>
     );
   }
-}
-  export default Homepage;
+
+
+export default Homepage;
   
