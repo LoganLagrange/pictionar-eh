@@ -1,17 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Homepage from "./pages/home/index";
-import JoinRoom from './components/RoomForm';
+import JoinRoom from './components/GameRooms/RoomForm';
 // import CreateRoom from './components/RoomForm';
+import AuthForm from "./pages/AuthForm";
+import NavBar from './components/NavBar'; // Import NavBar
+import NewRoom from './components/GameRooms/RoomForm'; // Import NewRoom
+import API from './utils/API'; // Import your API module (replace with your actual path)
+
 
 function App() {
+  const [token, setToken] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [userId, setUserId] = useState(0);
+
+  const handleLogin = loginObj=>{
+    API.login(loginObj).then(loginData=>{
+      setToken(loginData.token);
+      setIsLoggedIn(true);
+      setUserId(loginData.user.id)
+    }).catch(err=>{
+      console.log('err', err)
+    })
+  }
+  
+  const handleSignup = signupObj=>{
+    API.signup(signupObj).then(loginData=>{
+      setToken(loginData.token);
+      setIsLoggedIn(true);
+      setUserId(loginData.user.id)
+    }).catch(err=>{
+      console.log('err', err)
+    })
+  }
 
   return (
     <Router>
+      <NavBar/>
       <Routes>
         <Route path="/" element={<Homepage/>} />
+        <Route path="/newroom" element={<NewRoom/>} />
         <Route path="/join-room" element={<JoinRoom/>} />
-        {/* <Route path="/create-room" component={CreateRoom} /> */}
+        <Route path="/login" element={<AuthForm type="login" handleSubmit={handleLogin}/>}/>
+        <Route path="/signup" element={<AuthForm type="signup" handleSubmit={handleSignup}/>}/>
+        
       </Routes>
     </Router>
   );
