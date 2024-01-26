@@ -4,7 +4,7 @@ const API = {
     getAllAnswers: () => {
         return fetch(`${URL_PREFIX}/api/answers`).then(res => res.json())
     },
-    login: userObj => {
+    login: (userObj) => {
         return fetch(`${URL_PREFIX}/api/users/login`, {
             method: "POST",
             body: JSON.stringify(userObj),
@@ -19,7 +19,7 @@ const API = {
             }
         })
     },
-    signup: userObj => {
+    signup: (userObj) => {
         return fetch(`${URL_PREFIX}/api/users`, {
             method: "POST",
             body: JSON.stringify(userObj),
@@ -33,7 +33,7 @@ const API = {
                 throw new Error("network request failed")
             }
         })
-    },
+    }
 }
 
 export default API
