@@ -8,6 +8,27 @@ import authForm from "./pages/authForm"
 // import CreateRoom from './components/RoomForm';
 
 function App() {
+  const [token, setToken] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userId, setUserId] = useState(0);
+  const handleLogin = loginObj => {
+    API.login(loginObj).then(loginData=>{
+      setToken(loginData.token);
+      setIsLoggedIn(true);
+      setUserId(loginData.user.id);
+    }).catch(err=>{
+      console.log('error', err)
+    })
+  }
+  const handleSignup = signupObj => {
+    API.signup(signupObj).then(signupData=>{
+      setToken(signupData.token);
+      setIsLoggedIn(true);
+      setUserId(signupData.user.id);
+    }).catch(err=>{
+      console.log('error', err)
+    })
+  }
 
   return (
     <Router>
