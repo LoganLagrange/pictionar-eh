@@ -35,6 +35,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage/>} />
         <Route path="/join-room" element={<JoinRoom/>} />
+        <Route path='login' element={<AuthForm type="login" handSubmit={handleLogin}/>}/>
+        <Route path='signup' element={<AuthForm type="signup" handSubmit={handleSignup}/>}/>
         {/* <Route path="/create-room" component={CreateRoom} /> */}
       </Routes>
     </Router>
