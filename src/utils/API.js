@@ -20,7 +20,7 @@ const API = {
         })
     },
     signup: (userObj) => {
-        return fetch(`${URL_PREFIX}/pi/users`, {
+        return fetch(`${URL_PREFIX}/api/users`, {
             method: "POST",
             body: JSON.stringify(userObj),
             headers: {

@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Homepage from "./pages/home/index";
 import JoinRoom from './components/GameRooms/RoomForm';
 import { useState } from "react";
-import authForm from "./pages/authForm"
+import AuthForm from "./pages/authForm"
 // import CreateRoom from './components/RoomForm';
 import NavBar from './components/NavBar'; // Import NavBar
 import NewRoom from './components/GameRooms/RoomForm'; // Import NewRoom
-import API from './utils/API'; // Import your API module (replace with your actual path)
+import API from './utils/API';
 
 
 function App() {
@@ -40,8 +40,8 @@ function App() {
         <Route path="/" element={<Homepage/>} />
         <Route path="/newroom" element={<NewRoom/>} />
         <Route path="/join-room" element={<JoinRoom/>} />
-        <Route path='login' element={<AuthForm type="login" handSubmit={handleLogin}/>}/>
-        <Route path='signup' element={<AuthForm type="signup" handSubmit={handleSignup}/>}/>
+        <Route path='/login' element={<AuthForm type="login" handSubmit={handleLogin}/>}/>
+        <Route path='/signup' element={<AuthForm type="signup" handSubmit={handleSignup}/>}/>
         {/* <Route path="/create-room" component={CreateRoom} /> */}
       </Routes>
     </Router>
