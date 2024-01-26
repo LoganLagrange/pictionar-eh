@@ -1,4 +1,5 @@
 import React from 'react';
+import DrawingCanvas from '../../components/DrawingCanvas'; // Import the DrawingCanvas component
 import "./style.css"
 
 export default function Game(props) {
@@ -14,9 +15,10 @@ export default function Game(props) {
         <h2 className='card-title'>PICTIONAR'EH'</h2>
         <div>
           <p className='card-word'>Your word is: {props.word} </p>
-          <canvas className='card-canvas'>
-            <p>Your turn: {props.user}, draw {props.word} </p>
-          </canvas>
+          
+          {/* Replace the canvas element with the DrawingCanvas component */}
+          <DrawingCanvas />
+
           <article className='card-chat'> Guess the drawn image here </article>
         </div>
       </div>

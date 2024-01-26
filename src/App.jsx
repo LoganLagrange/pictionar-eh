@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Homepage from "./pages/home/index";
+import Gamepage from "./pages/gameroom/index";
 import JoinRoom from './components/GameRooms/RoomForm';
-import { useState } from "react";
 import AuthForm from "./pages/authForm"
 // import CreateRoom from './components/RoomForm';
 import NavBar from './components/NavBar'; // Import NavBar
@@ -42,6 +43,7 @@ function App() {
         <Route path="/join-room" element={<JoinRoom/>} />
         <Route path='/login' element={<AuthForm type="login" handSubmit={handleLogin}/>}/>
         <Route path='/signup' element={<AuthForm type="signup" handSubmit={handleSignup}/>}/>
+        <Route path="/gamepage" element={<Gamepage/>} />
         {/* <Route path="/create-room" component={CreateRoom} /> */}
       </Routes>
     </Router>
