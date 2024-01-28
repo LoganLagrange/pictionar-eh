@@ -1,28 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import io from 'socket.io-client';
-import RoomCard from './RoomCard';
+import RoomCard from '../../components/GameRooms/RoomCard';
+import '../JoinRoom/style.css'
 
 const JoinRoom = () => {
-  const [rooms, setRooms] = useState([]);
+  const [rooms, setRooms] = useState([
+    { id: 1, name: 'Room 1', description: 'Description 1', players:[]},
+    { id: 2, name: 'Room 2', description: 'Description 2', players:[]},
+    { id: 3, name: 'Room 3', description: 'Description 3', players:[]},
+  ]);
 
-  useEffect(() => {
-    const socket = io('http://localhost:pictionar-eh-socket-server');
+  // useEffect(() => {
+  //   const socket = io('http://localhost:pictionar-eh-socket-server');
 
     // Listen for room updates from socket.io
-    socket.on('roomUpdate', (updatedRooms) => {
-      setRooms(updatedRooms);
-    });
+    // socket.on('roomUpdate', (updatedRooms) => {
+    //   setRooms(updatedRooms);
+    // });
 
     // Clean up the socket connection on component unmount
-    return () => {
-      socket.disconnect();
-    };
-  }, []);
+  //   return () => {
+  //     socket.disconnect();
+  //   };
+  // }, []);
 
-  const handleJoinRoom = async (roomId) => {
+  const handleJoinRoom = async (room) => {
     try {
       // Send a request to your backend to handle the joining process
-      const response = await fetch(`http://localhost:${PORT}/api/join-room/${roomId}`, {
+      const response = await fetch(`http://localhost:${PORT}/api/join-room/${room}`, {
         method: 'POST', // or 'PUT', 'PATCH', etc. depending on your socket.io API
         headers: {
           'Content-Type': 'application/json',
@@ -35,10 +39,10 @@ const JoinRoom = () => {
       });
 
       if (response.ok) {
-        console.log(`Successfully joined room ${roomId}`);
+        console.log(`Successfully joined room ${room}`);
         // Add any additional logic here (e.g., redirect to the room page)
       } else {
-        console.error(`Failed to join room ${roomId}`);
+        console.error(`Failed to join room ${room}`);
         // Handle errors or show a message to the user
       }
     } catch (error) {
@@ -49,10 +53,9 @@ const JoinRoom = () => {
 
   return (
     <div className="join-room-container">
-      <h3 className="room-card">Available Rooms</h3>
       <div className="flex-container">
         {rooms.map((room) => (
-          <RoomCard key={room.id} room={room} onJoinRoom={handleJoinRoom} />
+          <RoomCard key={room.id} room={room.players} onJoinRoom={handleJoinRoom} />
         ))}
       </div>
     </div>
