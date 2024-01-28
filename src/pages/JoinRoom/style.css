@@ -1,18 +1,39 @@
 .room-card {
-    border: 1px solid #ddd;
-    padding: 16px;
-    margin: 16px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid #eb0f0f;
+  padding: 16px;
+  margin: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 200px; 
+}
+
+.room-card h3 {
+  margin-bottom: 8px;
+}
+
+.room-card button {
+  background-color: #eb0f0f;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
   
   /* Add styling for JoinRoom.jsx */
   .join-room-container {
-    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   
   .flex-container {
     display: flex;
+    width: fit-content;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
+    border-color: #eb0f0f;
   }
