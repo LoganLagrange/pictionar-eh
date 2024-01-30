@@ -21,6 +21,12 @@ const socketUse = {
         })
     }, 
 
+    recRooms: () => {
+        socket.on('activeRooms', (rooms) => [
+            console.log(rooms)
+        ])
+    },
+
     // Socket emits
     requestRooms: () => {
         socket.emit('requestRooms');
