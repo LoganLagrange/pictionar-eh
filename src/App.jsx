@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Homepage from "./pages/home/index";
 import Gamepage from "./pages/gameroom/index";
@@ -9,7 +9,8 @@ import CreateRoomForm from './components/GameRooms/CreateRoomForm';
 import NavBar from './components/NavBar'; // Import NavBar
 import NewRoom from './components/GameRooms/CreateRoomForm'; // Import NewRoom
 import API from './utils/API';
-
+import socketUse from './utils/socket'
+import TestConnection from './components/TestConnection';
 
 function App() {
   const [token, setToken] = useState("");
@@ -41,6 +42,8 @@ function App() {
     navigate('/join-room');
   };
 
+  socketUse.connect();
+
   return (
     <Router>
       <NavBar/>
@@ -54,6 +57,7 @@ function App() {
         <Route path="/create-room" element={<CreateRoomForm onSubmit={handleCreateRoom} />} />
       </Routes>
     </Router>
+    // <TestConnection />
   );
 }
 
