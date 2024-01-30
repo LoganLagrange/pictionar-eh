@@ -4,9 +4,13 @@ const socket = io('http://localhost:5001/')
 
 const socketUse = {
     // Socket event listeners
-    connect: () => {
+    connect: (room) => {
         socket.on('connect', ()=>{
             console.log(`socket connected: ${socket.connected}`)
+
+            socket.on('disconnect', (room)=> {
+                socket.emit('leave', room)
+            })
         })
         
     },
@@ -16,10 +20,6 @@ const socketUse = {
             setMessages((prevMessages) => [...prevMessages, message]);
         })
     }, 
-
-    disconnect: ()=> {
-        socket.on('disconnect')
-    },
 
     // Socket emits
     requestRooms: () => {

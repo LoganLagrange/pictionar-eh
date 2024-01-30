@@ -4,12 +4,13 @@ import socketUse from '../utils/socket'; // Replace with the actual path to your
 const TestConnection = () => {
   useEffect(() => {
     // Call the connect function when the component mounts
+    socketUse.connect("test room");
     socketUse.joinRoom("test room");
     
 
     // Cleanup function: disconnect the socket when the component unmounts
     return () => {
-      socketUse.disconnect();
+      
     };
   }, []);
 
