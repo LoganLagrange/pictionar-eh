@@ -15,6 +15,7 @@ function App() {
   const [token, setToken] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState(0);
+  const [currentRoom, setRoom ] = useState(""); //setting the state variable 
   const handleLogin = loginObj => {
     API.login(loginObj).then(loginData=>{
       setToken(loginData.token);
@@ -36,9 +37,10 @@ function App() {
   const handleCreateRoom = (roomData) => {
     // Add the room data to the list of available rooms or store it in the database
     // You can use the useState hook or make an API call to store the room data
-  
+    
     // Redirect the user to the join room page
-    navigate('/join-room');
+    setRoom(roomData);
+    navigate('/join-room'); //having some issues
   };
 
   return (

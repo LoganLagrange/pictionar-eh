@@ -1,5 +1,6 @@
 import React from 'react';
 import DrawingCanvas from '../../components/DrawingCanvas'; // Import the DrawingCanvas component
+import ChatRoom from '../../components/ChatRoom'; // Import the chatroom component
 import "./style.css"
 
 export default function Game(props) {
@@ -18,6 +19,7 @@ export default function Game(props) {
           
           {/* Replace the canvas element with the DrawingCanvas component */}
           <DrawingCanvas />
+          {/* <ChatRoom/> */}
 
           <article className='card-chat'> Guess the drawn image here </article>
         </div>

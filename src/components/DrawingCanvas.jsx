@@ -4,6 +4,7 @@ import CanvasDraw from "react-canvas-draw"; // Component for drawing canvas
 import { GithubPicker } from "react-color"; // Component for color picker
 import "../pages/gameroom/style.css"; // Importing CSS styles
 import { useClickAway } from "../utils/useClickAway"; // Custom hook for handling clicks outside an element
+import ChatRoom from '../components/ChatRoom'; // Import the chatroom component
 
 import classNames from "classnames"; // Utility for conditional className joining
 
@@ -156,6 +157,7 @@ export default function App() {
           <textarea rows={10} value={saveData} readOnly />
         </>
       )}
+      <ChatRoom/>
     </div>
   );
 }
