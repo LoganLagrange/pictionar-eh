@@ -51,8 +51,8 @@ function App() {
         <Route path="/" element={<Homepage/>} />
         <Route path="/newroom" element={<NewRoom/>} />
         <Route path="/join-room" element={<JoinRoom/>} />
-        <Route path='/login' element={<AuthForm type="login" handSubmit={handleLogin}/>}/>
-        <Route path='/signup' element={<AuthForm type="signup" handSubmit={handleSignup}/>}/>
+        <Route path='/login' element={<AuthForm type="login" handleSubmit={handleLogin}/>}/>
+        <Route path='/signup' element={<AuthForm type="signup" handleSubmit={handleSignup}/>}/>
         <Route path="/gamepage" element={<Gamepage/>} />
         <Route path="/create-room" element={<CreateRoomForm onSubmit={handleCreateRoom} />} />
       </Routes>
