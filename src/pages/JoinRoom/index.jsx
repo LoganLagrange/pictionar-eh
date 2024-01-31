@@ -26,6 +26,7 @@ const JoinRoom = () => {
   const handleJoinRoom = async (room) => {
     try {
       // Send a request to your backend to handle the joining process
+      let PORT = 5001; // whatever your localhost PORT number is.
       const response = await fetch(`http://localhost:${PORT}/api/join-room/${room}`, {
         method: 'POST', // or 'PUT', 'PATCH', etc. depending on your socket.io API
         headers: {
@@ -51,6 +52,15 @@ const JoinRoom = () => {
     }
   };
 
+
+  console.log("before the return");
+
+  // let roomArr = document.querySelector(`.join-room-container`);
+  // console.log(roomArr);
+  // roomArr.addEventListener(onclick,(e)=>{
+  //   console.log(e.target);
+  // });
+
   return (
     <div className="join-room-container">
       <div className="flex-container">
@@ -59,7 +69,13 @@ const JoinRoom = () => {
         ))}
       </div>
     </div>
+
+
   );
+  console.log("after the return");
+
+  
+  
 };
 
 export default JoinRoom;
