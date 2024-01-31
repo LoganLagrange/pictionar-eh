@@ -1,10 +1,10 @@
 import React from 'react';
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Homepage from "./pages/home/index";
 import Gamepage from "./pages/gameroom/index";
 import JoinRoom from './pages/JoinRoom/index';
-import AuthForm from "./pages/authForm"
+import AuthForm from "./pages/authForm/index";
 import CreateRoomForm from './components/GameRooms/CreateRoomForm';
 import NavBar from './components/NavBar'; // Import NavBar
 import NewRoom from './components/GameRooms/CreateRoomForm'; // Import NewRoom
@@ -39,7 +39,8 @@ function App() {
     // You can use the useState hook or make an API call to store the room data
   
     // Redirect the user to the join room page
-    navigate('/join-room');
+    // Note: `navigate` function needs to be defined or imported from 'react-router-dom' if you wish to use it here.
+    // navigate('/join-room');
   };
 
   socketUse.connect();
@@ -51,8 +52,8 @@ function App() {
         <Route path="/" element={<Homepage/>} />
         <Route path="/newroom" element={<NewRoom/>} />
         <Route path="/join-room" element={<JoinRoom/>} />
-        <Route path='/login' element={<AuthForm type="login" handSubmit={handleLogin}/>}/>
-        <Route path='/signup' element={<AuthForm type="signup" handSubmit={handleSignup}/>}/>
+        <Route path='/login' element={<AuthForm type="login" handleSubmit={handleLogin}/>}/>
+        <Route path='/signup' element={<AuthForm type="signup" handleSubmit={handleSignup}/>}/>
         <Route path="/gamepage" element={<Gamepage/>} />
         <Route path="/create-room" element={<CreateRoomForm onSubmit={handleCreateRoom} />} />
       </Routes>
@@ -60,5 +61,6 @@ function App() {
     // <TestConnection />
   );
 }
+
 
 export default App;
