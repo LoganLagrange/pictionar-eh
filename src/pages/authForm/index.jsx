@@ -3,12 +3,12 @@ import "./style.css";
 import API from "../../utils/API";
 
 export default function AuthForm(props) {
-  const [email, setEmail] = useState("")
+  const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const subHandle = e=>{
     e.preventDefault();
     props.handleSubmit({
-      email,
+      username,
       password
     })
   }
@@ -17,7 +17,7 @@ export default function AuthForm(props) {
     <div className="AuthForm">
       <h3>{props.type}</h3>
       <form onSubmit={subHandle}>
-        <input type="text" value={email} onChange={e=>setEmail(e.target.value)} />
+        <input type="text" value={username} onChange={e=>setUsername(e.target.value)} />
         <input type="password" value={password} onChange={e=>setPassword(e.target.value)} />
         <button>{props.type}</button>
       </form>

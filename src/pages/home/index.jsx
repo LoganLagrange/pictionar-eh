@@ -33,7 +33,6 @@ export default function Homepage() {
       <header style={headerStyle} className="header">
         <h1 style={headingStyle}>Welcome to Pictionar-eh</h1>
         <div>
-          <h2>All the rooms</h2>
           {room.map(join=>(
           <RoomCard key={room.id} name={room}/>
           ))}
