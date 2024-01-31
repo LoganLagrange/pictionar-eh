@@ -1,12 +1,7 @@
 import React from 'react';
 import DrawingCanvas from '../../components/DrawingCanvas'; // Import the DrawingCanvas component
-<<<<<<< HEAD
-import ChatRoom from '../../components/ChatRoom'; // Import the chatroom component
-import "./style.css"
-=======
 import ChatBox from '../../components/ChatBox'; // Import the ChatBox component
 import "./style.css";
->>>>>>> dev
 
 export default function Game(props) {
   const styles = {
