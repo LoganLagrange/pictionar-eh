@@ -2,7 +2,14 @@ const URL_PREFIX = "https://pictionar-eh-api-7e9c6522d932.herokuapp.com"
 
 const API = {
     getAllAnswers: () => {
-        return fetch(`${URL_PREFIX}/api/answers`).then(res => res.json())
+        return fetch(`${URL_PREFIX}/api/answers`)
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                } else {
+                    throw new Error('Network response was not ok.');
+                }
+            })
     },
     login: (userObj) => {
         return fetch(`${URL_PREFIX}/api/users/login`, {
@@ -15,7 +22,7 @@ const API = {
             if (res.ok) {
                 return res.json()
             } else {
-                throw new Error("network request failed")
+                throw new Error("Login request failed");
             }
         })
     },
@@ -30,10 +37,12 @@ const API = {
             if (res.ok) {
                 return res.json()
             } else {
-                throw new Error("network request failed")
+                return res.text().then(text => {
+                    throw new Error(`Signup request failed: ${text}`);
+                });
             }
         })
     }
 }
 
-export default API
+export default API;

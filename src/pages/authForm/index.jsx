@@ -3,26 +3,21 @@ import "./style.css";
 import API from "../../utils/API";
 
 export default function AuthForm(props) {
-  const [email, setEmail] = useState("")
+  const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-  const subHandle = async (e)=>{
+  const subHandle = e=>{
     e.preventDefault();
-    try {
-      const response = await API.signup({
-        email,
-        password
-      });
-    console.log("Signup successful:", response);
-  }catch (error) {
-    console.log("Signup failed", error.message);
-  }
+    props.handleSubmit({
+      username,
+      password
+    })
   }
  
   return (
     <div className="AuthForm">
       <h3>{props.type}</h3>
       <form onSubmit={subHandle}>
-        <input type="text" value={email} onChange={e=>setEmail(e.target.value)} />
+        <input type="text" value={username} onChange={e=>setUsername(e.target.value)} />
         <input type="password" value={password} onChange={e=>setPassword(e.target.value)} />
         <button>{props.type}</button>
       </form>
