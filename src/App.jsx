@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Homepage from "./pages/home/index";
 import Gamepage from "./pages/gameroom/index";
 import JoinRoom from './pages/JoinRoom/index';
-import AuthForm from "./pages/AuthForm/index";
+import AuthForm from "./pages/authForm/index";
 import CreateRoomForm from './components/GameRooms/CreateRoomForm';
 import NavBar from './components/NavBar'; // Import NavBar
 import NewRoom from './components/GameRooms/CreateRoomForm'; // Import NewRoom
