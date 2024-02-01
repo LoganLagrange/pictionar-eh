@@ -150,13 +150,15 @@ export default function App() {
           save
         </button> */}
       </div>
-      {/* Display the saved canvas data as an image and text */}
+      {/* Commented out section that displays the saved canvas data */}
+      {/*
       {saveData && (
         <>
           <img src={saveData} alt="" />
           <textarea rows={10} value={saveData} readOnly />
         </>
       )}
+      */}
       <ChatRoom/>
     </div>
   );
