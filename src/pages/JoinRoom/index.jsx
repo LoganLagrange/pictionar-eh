@@ -14,7 +14,9 @@ const JoinRoom = () => {
   useEffect(() => {
       socketUse.connect();
       socketUse.recRooms();
-      socketUse.requestRooms();
+      socketUse.requestRooms((receivedRooms) => {
+        setRooms(receivedRooms);
+      });
     
   }, []);
 
