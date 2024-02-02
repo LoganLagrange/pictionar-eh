@@ -4,6 +4,7 @@ import '../JoinRoom/style.css'
 import socketUse from '../../utils/socket';
 
 const JoinRoom = () => {
+  const {user} = useAuth();
   const [rooms, setRooms] = useState([
     { id: 1, name: 'Room 1', description: 'Description 1', players:[]},
     { id: 2, name: 'Room 2', description: 'Description 2', players:[]},
@@ -18,8 +19,12 @@ const JoinRoom = () => {
   }, []);
 
   const handleJoinRoom = async (room) => {
-    try {
+    if (!user) {
+      console.log('LogIn to join a room!');
+      return;
+    }
 
+    try {
       // Send a request to your backend to handle the joining process
       let PORT = 5001; // whatever your localhost PORT number is.
       const response = await fetch(`http://localhost:${PORT}/api/join-room/${room.name}`, {

@@ -2,12 +2,18 @@ import React from "react";
 import CreateRoomForm from '../../components/GameRooms/CreateRoomForm';
 import axios from "axios"; // Import the axios module for making HTTP requests
 import {useHistory} from 'react-router-dom'; // Import useHistory
+import { useAuth } from "../Context/authcontext";
 
 //Add event listener to form submit button
 const CreateRoomForm = () => {
     const history = useHistory(); // Initialize useHistory
+    const {user} = useAuth();
   
     const handleCreateRoom = async (roomId, roomName) => {
+      if(!user) {
+        console.log('LogIn to create a room!');
+        return;
+      }
       try {
         // Make a POST request to your socket.io server using axios
         const response = await axios.post("http://socket.io/api/rooms", {
