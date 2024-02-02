@@ -5,26 +5,27 @@ const socket = io('http://localhost:5001/')
 const socketUse = {
     // Socket event listeners
     connect: (room) => {
-        socket.on('connect', ()=>{
+        socket.on('connect', () => {
             console.log(`socket connected: ${socket.connected}`)
 
-            socket.on('disconnect', (room)=> {
+            socket.on('disconnect', (room) => {
                 socket.emit('leave', room)
             })
         })
-        
+
     },
 
     RecMessage: (setMessages) => {
         socket.on('broadcastMessage', message => {
             setMessages((prevMessages) => [...prevMessages, message]);
         })
-    }, 
+    },
 
-    recRooms: () => {
-        socket.on('activeRooms', (rooms) => [
-            console.log(rooms)
-        ])
+    recRooms: (callback) => {
+        socket.on('activeRooms', (rooms) => {
+            console.log(rooms);
+            callback(rooms);
+        })
     },
 
     // Socket emits
@@ -36,7 +37,7 @@ const socketUse = {
         socket.emit('join', room);
     },
 
-    sendMessage: (room, message)  => {
+    sendMessage: (room, message) => {
         socket.emit('message', room, message);
     },
 

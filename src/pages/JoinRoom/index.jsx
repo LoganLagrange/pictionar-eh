@@ -13,46 +13,11 @@ const JoinRoom = () => {
   useEffect(() => {
       socketUse.connect();
       socketUse.recRooms();
-      socketUse.requestRooms();
+      socketUse.requestRooms((receivedRooms) => {
+        setRooms(receivedRooms);
+      });
     
   }, []);
-
-  const handleJoinRoom = async (room) => {
-    try {
-
-      // Send a request to your backend to handle the joining process
-      let PORT = 5001; // whatever your localhost PORT number is.
-      const response = await fetch(`http://localhost:${PORT}/api/join-room/${room.name}`, {
-        method: 'POST', // or 'PUT', 'PATCH', etc. depending on your socket.io API
-        headers: {
-          'Content-Type': 'application/json',
-          // Include any necessary authentication headers or tokens
-        },
-        // You can include additional data in the request body if needed
-        body: JSON.stringify({
-          userId: 'your-user-id', // Replace with the actual user ID
-        }),
-      });
-
-      if (response.ok) {
-        console.log(`Successfully joined room ${room}`);
-        // Add any additional logic here (e.g., redirect to the room page)
-      } else {
-        console.error(`Failed to join room ${room}`);
-        // Handle errors or show a message to the user
-      }
-    } catch (error) {
-      console.error('Error joining room:', error);
-      // Handle unexpected errors
-    }
-  };
-
-
-  console.log("before the return");
-
-  const handleClick = (roomArr) =>{
-
-  }
 
   let roomArr = document.querySelector(`.join-room-container`);
   console.log(roomArr);
