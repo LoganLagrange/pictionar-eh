@@ -13,7 +13,7 @@ const JoinRoom = () => {
       });
       socketUse.requestRooms();
       console.log(rooms);
-    
+
   }, []);
 
   let roomArr = document.querySelector(`.join-room-container`);

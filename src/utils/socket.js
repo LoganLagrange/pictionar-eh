@@ -43,6 +43,10 @@ const socketUse = {
 
     sendDraw: (room, change) => {
         socket.emit('draw', room, change)
+    },
+
+    leaveRoom: (room) => {
+        socket.emit('leave', room)
     }
 
 
