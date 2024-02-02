@@ -1,12 +1,12 @@
 import React from "react";
 import CreateRoomForm from '../../components/GameRooms/CreateRoomForm';
 import axios from "axios"; // Import the axios module for making HTTP requests
-import {useHistory} from 'react-router-dom'; // Import useHistory
+import {useNavigate} from 'react-router-dom'; // Import useNavigate
 import { useAuth } from "../Context/authcontext";
 
 //Add event listener to form submit button
 const CreateRoomForm = () => {
-    const history = useHistory(); // Initialize useHistory
+    const navigate = useNavigate(); // Initialize useNavigate
     const {user} = useAuth();
   
     const handleCreateRoom = async (roomId, roomName) => {
@@ -21,8 +21,8 @@ const CreateRoomForm = () => {
           roomName: roomName
         });
   
-        // Perform the redirection to the game room using history.push
-        history.push(`/Gameroom/${roomName}`);
+        // Perform the redirection to the game room using navigate.push
+        navigate.push(`/Gameroom/${roomName}`);
       } catch (error) {
         console.error("Error creating room:", error);
       }
