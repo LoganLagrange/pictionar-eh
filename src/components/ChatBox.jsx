@@ -29,8 +29,12 @@ export default function ChatBox({currentRoom, setRoom}) {
     setMessage(e.target.value);
   };
 
+
+  // for sending any thing on a message send
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    console.log("hello submit message !");
     if (message.trim()) {
       // Send message to socket server
       socketUse.sendMessage(currentRoom, message)

@@ -1,4 +1,5 @@
 import { io } from 'socket.io-client'
+import saveData from '../components/DrawingCanvas'
 // CRITICAL replace with production url
 const socket = io('http://localhost:5001/')
 
