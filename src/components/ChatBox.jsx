@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import "../pages/gameroom/style.css"; // Importing CSS styles
+import socketUse from '../utils/socket';
 
 export default function ChatBox() {
   const [message, setMessage] = useState('');
@@ -17,9 +18,17 @@ export default function ChatBox() {
     setMessage(e.target.value);
   };
 
+
+  // for sending any thing on a message send
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    console.log("hello submit message !");
     if (message.trim()) {
+      // socketUse.sendMessage(room,e.target.value);
+  
+  //hard coding the room for testing purpose
+  socketUse.sendMessage("Room 2",message);
       setMessages([...messages, message]);
       setMessage('');
     }
