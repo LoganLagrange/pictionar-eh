@@ -4,13 +4,14 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Homepage from "./pages/home/index";
 import Gamepage from "./pages/gameroom/index";
 import JoinRoom from './pages/JoinRoom/index';
-import AuthForm from "./pages/AuthForm/index";
+import AuthForm from "./pages/authform/index";
 import CreateRoomForm from './components/GameRooms/CreateRoomForm';
 import NavBar from './components/NavBar'; // Import NavBar
 import NewRoom from './components/GameRooms/CreateRoomForm'; // Import NewRoom
 import API from './utils/API';
 import socketUse from './utils/socket'
 import TestConnection from './components/TestConnection';
+import { AuthProvider } from './pages/Context/authcontext';
 
 function App() {
   const [token, setToken] = useState("");
@@ -46,6 +47,7 @@ function App() {
   socketUse.connect();
 
   return (
+    <AuthProvider>
     <Router>
       <NavBar/>
       <Routes>
@@ -58,6 +60,7 @@ function App() {
         <Route path="/create-room" element={<CreateRoomForm onSubmit={handleCreateRoom} />} />
       </Routes>
     </Router>
+    </AuthProvider>
     // <TestConnection />
   );
 }
