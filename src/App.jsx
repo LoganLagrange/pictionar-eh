@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Homepage from "./pages/home/index";
-import Gamepage from "./pages/gameroom/index";
+import Game from "./pages/gameroom/index";
 import JoinRoom from './pages/JoinRoom/index';
 import AuthForm from "./pages/authform/index";
 import CreateRoomForm from './components/GameRooms/CreateRoomForm';
@@ -56,7 +56,7 @@ function App() {
         <Route path="/join-room" element={<JoinRoom/>} />
         <Route path='/login' element={<AuthForm type="login" handleSubmit={handleLogin}/>}/>
         <Route path='/signup' element={<AuthForm type="signup" handleSubmit={handleSignup}/>}/>
-        <Route path="/gamepage" element={<Gamepage/>} />
+        <Route path="/game" element={<Game/>} />
         <Route path="/create-room" element={<CreateRoomForm onSubmit={handleCreateRoom} />} />
       </Routes>
     </Router>

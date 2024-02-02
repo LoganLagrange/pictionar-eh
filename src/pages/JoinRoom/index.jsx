@@ -4,7 +4,7 @@ import '../JoinRoom/style.css'
 import socketUse from '../../utils/socket';
 
 const JoinRoom = () => {
-  const {user} = useAuth();
+  // const {user} = useAuth();
   const [rooms, setRooms] = useState([
     { id: 1, name: 'Room 1', description: 'Description 1', players:[]},
     { id: 2, name: 'Room 2', description: 'Description 2', players:[]},

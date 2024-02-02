@@ -7,6 +7,8 @@ export default function ChatBox() {
   const messagesContainerRef = useRef(null); // Reference to the messages container
 
   useEffect(() => {
+    
+
     if (messagesContainerRef.current) {
       // Scroll to the bottom of the messages when new messages are added
       messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
