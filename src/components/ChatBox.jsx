@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import "../pages/gameroom/style.css"; // Importing CSS styles
+import socketUse from '../utils/socket';
 
 export default function ChatBox() {
   const [message, setMessage] = useState('');
@@ -7,7 +8,9 @@ export default function ChatBox() {
   const messagesContainerRef = useRef(null); // Reference to the messages container
 
   useEffect(() => {
-    
+
+    // Activate socket method for listening for incoming messages
+    socketUse.RecMessage(setMessages);
 
     if (messagesContainerRef.current) {
       // Scroll to the bottom of the messages when new messages are added
@@ -22,6 +25,9 @@ export default function ChatBox() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (message.trim()) {
+      // Send message to socket server
+      socketUse.sendMessage()
+
       setMessages([...messages, message]);
       setMessage('');
     }

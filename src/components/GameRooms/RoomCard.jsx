@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const handleClick = (roomName, navigate) =>{
   console.log(roomName);
   socketUse.joinRoom(roomName); // supposed to join the room on the socket
+  setCurrentRoom()
   navigate('/game')
 }
 
