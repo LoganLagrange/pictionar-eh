@@ -6,10 +6,11 @@ const handleClick = (e,roomName) =>{
   socketUse.joinRoom(roomName); // supposed to join the room on the socket
 }
 
-const RoomCard = ({ room, onJoinRoom }) => {
+const RoomCard = ({ room }) => {
   return (
     <div className="room-card" id={room.name}>
       <h3>{room.name}</h3> 
+      <p>Players: {room.count}</p>
       <button onClick={(e) => handleClick(e,room.name)}>Join</button>
     </div>
   );

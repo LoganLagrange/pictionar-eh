@@ -13,11 +13,12 @@ const JoinRoom = () => {
 
   useEffect(() => {
       socketUse.connect();
-      socketUse.recRooms();
-      socketUse.requestRooms((receivedRooms) => {
+      socketUse.recRooms((receivedRooms) => {
         setRooms(receivedRooms);
       });
-    
+      socketUse.requestRooms();
+      console.log(rooms);
+
   }, []);
 
   const handleJoinRoom = async (room) => {
@@ -70,9 +71,9 @@ const JoinRoom = () => {
   return (
     <div className="join-room-container">
       <div className="flex-container">
-        {rooms.map((room) => (
+        {Object.keys(rooms).map((roomName) => (
           // <RoomCard key={room.id} roomName = {room.name} room={room} onJoinRoom={handleJoinRoom} />
-          <RoomCard room={room} onJoinRoom={handleJoinRoom} />
+          <RoomCard key={roomName} room={{name: roomName, count: rooms[roomName].count}} />
         ))}
       </div>
     </div>
