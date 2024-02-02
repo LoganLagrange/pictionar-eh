@@ -58,7 +58,7 @@ function App() {
         <Route path="/join-room" element={<JoinRoom currentRoom={currentRoom} setRoom={setRoom}/>} />
         <Route path='/login' element={<AuthForm type="login" handleSubmit={handleLogin}/>}/>
         <Route path='/signup' element={<AuthForm type="signup" handleSubmit={handleSignup}/>}/>
-        <Route path="/game" element={<Game/>} />
+        <Route path="/game" element={<Game currentRoom={currentRoom} setRoom={setRoom}/>} />
         <Route path="/create-room" element={<CreateRoomForm onSubmit={handleCreateRoom} currentRoom={currentRoom} setRoom={setRoom}/>} />
       </Routes>
     </Router>

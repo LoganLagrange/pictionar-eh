@@ -3,7 +3,7 @@ import DrawingCanvas from '../../components/DrawingCanvas'; // Import the Drawin
 import ChatBox from '../../components/ChatBox'; // Import the ChatBox component
 import "./style.css";
 
-export default function Game(props) {
+export default function Game({currentRoom, setRoom}) {
   const styles = {
     gamepageStyles: {
       background: 'red',
@@ -40,18 +40,18 @@ export default function Game(props) {
     <section style={styles.gamepageStyles} className="section">
       <h2 className='card-title'>PICTIONAR'EH'</h2>
       <div style={styles.wordDisplay}>
-        <p className='card-word'>Your word is: {props.word}</p>
+        {/* <p className='card-word'>Your word is: {props.word}</p> */}
       </div>
       <div style={styles.flexContainer}>
         <div style={styles.canvasContainer} className="canvas-container">
           <DrawingCanvas />
         </div>
         <div style={styles.chatContainer} className="chat-container">
-          <ChatBox />
+          <ChatBox currentRoom={currentRoom} setRoom={setRoom}/>
         </div>
       </div>
       <a href="#" className="btn btn-primary">
-        Submit Guess {props.name}
+        {/* Submit Guess {props.name} */}
       </a>
     </section>
   );

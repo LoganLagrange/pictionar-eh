@@ -2,21 +2,28 @@ import React, { useState, useEffect, useRef } from 'react';
 import "../pages/gameroom/style.css"; // Importing CSS styles
 import socketUse from '../utils/socket';
 
-export default function ChatBox() {
+export default function ChatBox({currentRoom, setRoom}) {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
   const messagesContainerRef = useRef(null); // Reference to the messages container
 
   useEffect(() => {
-
+    let isMounted = true;
     // Activate socket method for listening for incoming messages
-    socketUse.RecMessage(setMessages);
-
-    if (messagesContainerRef.current) {
-      // Scroll to the bottom of the messages when new messages are added
-      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+    socketUse.RecMessage((newMessages) => {
+      if(isMounted) {
+        setMessages(newMessages);
+        if (messagesContainerRef.current) {
+          // Scroll to the bottom of the messages when new messages are added
+          messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+        }
+      }
+    });
+    return () => {
+      isMounted = false;
     }
-  }, [messages]);
+    
+  }, []);
 
   const handleMessageChange = (e) => {
     setMessage(e.target.value);
@@ -26,7 +33,7 @@ export default function ChatBox() {
     e.preventDefault();
     if (message.trim()) {
       // Send message to socket server
-      socketUse.sendMessage()
+      socketUse.sendMessage(currentRoom, message)
 
       setMessages([...messages, message]);
       setMessage('');
@@ -38,7 +45,7 @@ export default function ChatBox() {
       <div className="messages-container" ref={messagesContainerRef}>
         <div className="messages">
           {messages.map((msg, index) => (
-            <p key={index}>{msg}</p>
+            <p key={index}>{msg.message}</p>
           ))}
         </div>
       </div>
