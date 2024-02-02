@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
+import { useAuth } from '../Context/authcontext';
 import "./style.css"
 import API from "../../utils/API"
 import JoinRoom from '../JoinRoom';
@@ -18,9 +20,15 @@ export default function Homepage() {
     marginBottom: '20px',
   };
 
-  const [User, setCreateRoom, setJoinRoom] = useState([]);
   const [room, setRoom] = useState([]); //To declare room state variable
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
   useEffect(()=>{
+    if (!user) {
+      navigate('/login');
+    }
+
     API.getAllAnswers()
     .then(answerData=>{
       console.log(answerData);
@@ -28,12 +36,13 @@ export default function Homepage() {
     }).catch(err=>{
       console.log(err)
     });
-  }, []);
+  }, [user, navigate]);
+
     return (
       <header style={headerStyle} className="header">
         <h1 style={headingStyle}>Welcome to Pictionar-eh</h1>
         <div>
-          {room.map(join=>(
+          {room.map(room=>(
           <RoomCard key={room.id} name={room}/>
           ))}
         <Link to="/join-room">

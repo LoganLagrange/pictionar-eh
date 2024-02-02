@@ -22,10 +22,11 @@ const socketUse = {
         })
     },
 
-    recRooms: () => {
-        socket.on('activeRooms', (rooms) => [
-            console.log(rooms)
-        ])
+    recRooms: (callback) => {
+        socket.on('activeRooms', (rooms) => {
+            console.log(rooms);
+            callback(rooms);
+        })
     },
 
     // Socket emits
@@ -43,6 +44,10 @@ const socketUse = {
 
     sendDraw: (room, change) => {
         socket.emit('draw', room, change)
+    },
+
+    leaveRoom: (room) => {
+        socket.emit('leave', room)
     }
 
 
