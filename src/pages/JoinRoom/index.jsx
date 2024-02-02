@@ -3,8 +3,8 @@ import RoomCard from '../../components/GameRooms/RoomCard';
 import '../JoinRoom/style.css'
 import socketUse from '../../utils/socket';
 
-const JoinRoom = () => {
-  const {user} = useAuth();
+const JoinRoom = ({currentRoom, setRoom}) => {
+  // const {user} = useAuth();
   const [rooms, setRooms] = useState([
     { id: 1, name: 'Room 1', description: 'Description 1', players:[]},
     { id: 2, name: 'Room 2', description: 'Description 2', players:[]},
@@ -21,47 +21,6 @@ const JoinRoom = () => {
 
   }, []);
 
-  const handleJoinRoom = async (room) => {
-    if (!user) {
-      console.log('LogIn to join a room!');
-      return;
-    }
-
-    try {
-      // Send a request to your backend to handle the joining process
-      let PORT = 5001; // whatever your localhost PORT number is.
-      const response = await fetch(`http://localhost:${PORT}/api/join-room/${room.name}`, {
-        method: 'POST', // or 'PUT', 'PATCH', etc. depending on your socket.io API
-        headers: {
-          'Content-Type': 'application/json',
-          // Include any necessary authentication headers or tokens
-        },
-        // You can include additional data in the request body if needed
-        body: JSON.stringify({
-          userId: 'your-user-id', // Replace with the actual user ID
-        }),
-      });
-
-      if (response.ok) {
-        console.log(`Successfully joined room ${room}`);
-        // Add any additional logic here (e.g., redirect to the room page)
-      } else {
-        console.error(`Failed to join room ${room}`);
-        // Handle errors or show a message to the user
-      }
-    } catch (error) {
-      console.error('Error joining room:', error);
-      // Handle unexpected errors
-    }
-  };
-
-
-  console.log("before the return");
-
-  const handleClick = (roomArr) =>{
-
-  }
-
   let roomArr = document.querySelector(`.join-room-container`);
   console.log(roomArr);
   // roomArr.addEventListener(onclick,(e)=>{
@@ -73,7 +32,7 @@ const JoinRoom = () => {
       <div className="flex-container">
         {Object.keys(rooms).map((roomName) => (
           // <RoomCard key={room.id} roomName = {room.name} room={room} onJoinRoom={handleJoinRoom} />
-          <RoomCard key={roomName} room={{name: roomName, count: rooms[roomName].count}} />
+          <RoomCard key={roomName} room={{name: roomName, count: rooms[roomName].count} } currentRoom={currentRoom} setRoom={setRoom}/>
         ))}
       </div>
     </div>

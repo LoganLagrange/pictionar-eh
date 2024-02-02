@@ -1,17 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import socketUse from '../../utils/socket';
+import { useNavigate } from 'react-router-dom';
 
-const handleClick = (e,roomName) =>{
-  console.log(roomName);
-  socketUse.joinRoom(roomName); // supposed to join the room on the socket
-}
+const RoomCard = ({ room, currentRoom, setRoom }) => {
+  const navigate = useNavigate();
 
-const RoomCard = ({ room }) => {
+  const handleClick = (roomName, navigate) =>{
+    console.log(roomName);
+    
+    setRoom((prevRoom) => {
+      socketUse.joinRoom(roomName); // supposed to join the room on the socket
+      navigate('/game')
+      return(roomName)
+    })
+    console.log("roombox room:", currentRoom)
+  }
+
+  useEffect(()=> {
+    
+  }, [currentRoom, navigate])
+
   return (
     <div className="room-card" id={room.name}>
       <h3>{room.name}</h3> 
       <p>Players: {room.count}</p>
-      <button onClick={(e) => handleClick(e,room.name)}>Join</button>
+      <button onClick={(e) => handleClick(room.name, navigate)}>Join</button>
     </div>
   );
 };

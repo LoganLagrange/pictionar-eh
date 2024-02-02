@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Homepage from "./pages/home/index";
-import Gamepage from "./pages/gameroom/index";
+import Game from "./pages/gameroom/index";
 import JoinRoom from './pages/JoinRoom/index';
 import AuthForm from "./pages/authform/index";
 import CreateRoomForm from './components/GameRooms/CreateRoomForm';
@@ -17,6 +17,8 @@ function App() {
   const [token, setToken] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState(0);
+  const [currentRoom, setRoom] = useState('');
+
   const handleLogin = loginObj => {
     API.login(loginObj).then(loginData=>{
       setToken(loginData.token);
@@ -53,11 +55,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage/>} />
         <Route path="/newroom" element={<NewRoom/>} />
-        <Route path="/join-room" element={<JoinRoom/>} />
+        <Route path="/join-room" element={<JoinRoom currentRoom={currentRoom} setRoom={setRoom}/>} />
         <Route path='/login' element={<AuthForm type="login" handleSubmit={handleLogin}/>}/>
         <Route path='/signup' element={<AuthForm type="signup" handleSubmit={handleSignup}/>}/>
-        <Route path="/gamepage" element={<Gamepage/>} />
-        <Route path="/create-room" element={<CreateRoomForm onSubmit={handleCreateRoom} />} />
+        <Route path="/game" element={<Game currentRoom={currentRoom} setRoom={setRoom}/>} />
+        <Route path="/create-room" element={<CreateRoomForm onSubmit={handleCreateRoom} currentRoom={currentRoom} setRoom={setRoom}/>} />
       </Routes>
     </Router>
     </AuthProvider>
