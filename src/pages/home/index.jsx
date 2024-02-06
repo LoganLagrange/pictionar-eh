@@ -25,17 +25,17 @@ export default function Homepage() {
   const navigate = useNavigate();
 
   useEffect(()=>{
-    if (!user) {
-      navigate('/login');
-    }
+    // if (!user) {
+    //   navigate('/login');
+    // }
 
-    API.getAllAnswers()
-    .then(answerData=>{
-      console.log(answerData);
-      setRoom(roomData); //update state variable name to setRoom
-    }).catch(err=>{
-      console.log(err)
-    });
+    // API.getAllAnswers()
+    // .then(answerData=>{
+    //   console.log(answerData);
+    //   setRoom(roomData); //update state variable name to setRoom
+    // }).catch(err=>{
+    //   console.log(err)
+    // });
   }, [user, navigate]);
 
     return (
