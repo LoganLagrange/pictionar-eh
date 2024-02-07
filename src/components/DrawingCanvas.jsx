@@ -50,7 +50,7 @@
   const width = `${Math.ceil(colors.length / 2) * 32}px`;
 
   // Main App component
-  export default function App() {
+  export default function App({ currentRoom, setRoom }) {
     // Ref for the canvas element
     const canvasRef = React.createRef(null);
     // State for brush color, visibility of color picker, and saved canvas data
@@ -78,11 +78,11 @@
     const handleCanvasChange = () => {
       const saveData = getImg();
 
-      // socketUse.sendDraw(room, saveData);
+      socketUse.sendDraw(currentRoom, saveData);
       
 
       //hard coding the room for now
-      socketUse.sendDraw("Room 2", saveData);
+      // socketUse.sendDraw("Room 2", saveData);
 
       console.log("hello Canvas");
       setSaveData(saveData);

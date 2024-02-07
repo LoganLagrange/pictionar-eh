@@ -6,6 +6,7 @@ import socketUse from '../../utils/socket'
 
 export default function Game({ currentRoom, setRoom }) {
   const [drawer, setDrawer] = useState(false);
+  const [drawing, setDrawing] = useState()
 
   useEffect(() => {
     const handleDrawerUpdate = (drawerStatus) => {
@@ -13,8 +14,14 @@ export default function Game({ currentRoom, setRoom }) {
     };
 
     socketUse.recDrawer(handleDrawerUpdate);
+  })
 
-    socketUse.
+  useEffect(()=>{
+    const handleDrawChange = (change) => {
+      setDrawing(change)
+    };
+
+    socketUse.recDraw(handleDrawChange)
   })
 
   const styles = {
@@ -58,11 +65,11 @@ export default function Game({ currentRoom, setRoom }) {
       <div style={styles.flexContainer}>
         {drawer ? (
           <div style={styles.canvasContainer} className="canvas-container">
-            <DrawingCanvas />
+            <DrawingCanvas currentRoom={currentRoom} setRoom={setRoom}/>
           </div>
         ) : (
           <div style={styles.canvasContainer} className="canvas-container">
-            <img src="" alt="" />
+            {drawing && <img src={drawing} alt="" />}
           </div>
         )}
 
