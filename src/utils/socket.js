@@ -29,6 +29,13 @@ const socketUse = {
         })
     },
 
+    recDrawer: (callback) => {
+        socket.on('userSelect', (data) => {
+            const {drawer} = data;
+            callback(drawer)
+        })
+    },
+
     // Socket emits
     requestRooms: () => {
         socket.emit('requestRooms');
