@@ -29,6 +29,14 @@ const socketUse = {
         })
     },
 
+    recDrawer: (callback) => {
+        socket.on('userSelect', (data) => {
+            // const {drawer} = data;
+            callback(data)
+            console.log(`You are the drawer: ${data}`)
+        })
+    },
+
     // Socket emits
     requestRooms: () => {
         socket.emit('requestRooms');

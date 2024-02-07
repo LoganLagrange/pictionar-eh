@@ -1,9 +1,20 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import DrawingCanvas from '../../components/DrawingCanvas'; // Import the DrawingCanvas component
 import ChatBox from '../../components/ChatBox'; // Import the ChatBox component
 import "./style.css";
+import socketUse from '../../utils/socket'
 
 export default function Game({currentRoom, setRoom}) {
+  const [drawer, setDrawer] = useState(false);
+
+  useEffect(()=>{
+    const handleDrawerUpdate = (drawerStatus) => {
+      setDrawer(drawerStatus)
+    };
+
+    socketUse.recDrawer(handleDrawerUpdate);
+  })
+
   const styles = {
     gamepageStyles: {
       background: 'red',
