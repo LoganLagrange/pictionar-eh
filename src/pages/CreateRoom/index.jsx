@@ -3,6 +3,7 @@ import CreateRoomForm from '../../components/GameRooms/CreateRoomForm';
 import axios from "axios"; // Import the axios module for making HTTP requests
 import {useNavigate} from 'react-router-dom'; // Import useNavigate
 import { useAuth } from "../Context/authcontext";
+import "./style.css";
 
 //Add event listener to form submit button
 const CreateRoomForm = () => {
@@ -30,7 +31,7 @@ const CreateRoomForm = () => {
 
   //return room form
   return (
-      <div>
+      <div className="create-form">
       <h1>Create Room</h1>
       <CreateRoomForm onCreateRoom={handleCreateRoom} />
     </div>

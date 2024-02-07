@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import '../GameRooms/style.css'
 
 function CreateRoomForm(props) {
   // State for room name input
