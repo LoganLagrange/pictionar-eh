@@ -1,18 +1,27 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import DrawingCanvas from '../../components/DrawingCanvas'; // Import the DrawingCanvas component
 import ChatBox from '../../components/ChatBox'; // Import the ChatBox component
 import "./style.css";
 import socketUse from '../../utils/socket'
 
-export default function Game({currentRoom, setRoom}) {
+export default function Game({ currentRoom, setRoom }) {
   const [drawer, setDrawer] = useState(false);
+  const [drawing, setDrawing] = useState()
 
-  useEffect(()=>{
+  useEffect(() => {
     const handleDrawerUpdate = (drawerStatus) => {
       setDrawer(drawerStatus)
     };
 
     socketUse.recDrawer(handleDrawerUpdate);
+  })
+
+  useEffect(()=>{
+    const handleDrawChange = (change) => {
+      setDrawing(change)
+    };
+
+    socketUse.recDraw(handleDrawChange)
   })
 
   const styles = {
@@ -54,11 +63,18 @@ export default function Game({currentRoom, setRoom}) {
         {/* <p className='card-word'>Your word is: {props.word}</p> */}
       </div>
       <div style={styles.flexContainer}>
-        <div style={styles.canvasContainer} className="canvas-container">
-          <DrawingCanvas />
-        </div>
+        {drawer ? (
+          <div style={styles.canvasContainer} className="canvas-container">
+            <DrawingCanvas currentRoom={currentRoom} setRoom={setRoom}/>
+          </div>
+        ) : (
+          <div style={styles.canvasContainer} className="canvas-container">
+            {drawing && <img src={drawing} alt="" />}
+          </div>
+        )}
+
         <div style={styles.chatContainer} className="chat-container">
-          <ChatBox currentRoom={currentRoom} setRoom={setRoom}/>
+          <ChatBox currentRoom={currentRoom} setRoom={setRoom} />
         </div>
       </div>
       <a href="#" className="btn btn-primary">

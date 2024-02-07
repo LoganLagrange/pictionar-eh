@@ -37,6 +37,13 @@ const socketUse = {
         })
     },
 
+    recDraw: (callback) => {
+        socket.on('drawChange', (data) => {
+            callback(data);
+            console.log(`change to drawing ${data}`)
+        })
+    },
+
     // Socket emits
     requestRooms: () => {
         socket.emit('requestRooms');
