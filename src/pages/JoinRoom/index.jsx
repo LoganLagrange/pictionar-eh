@@ -30,14 +30,13 @@ const JoinRoom = ({currentRoom, setRoom}) => {
   return (
     <div className="join-room-container">
       <div className="flex-container">
+        <h1>Select an existing room to join!</h1>
         {Object.keys(rooms).map((roomName) => (
           // <RoomCard key={room.id} roomName = {room.name} room={room} onJoinRoom={handleJoinRoom} />
           <RoomCard key={roomName} room={{name: roomName, count: rooms[roomName].count} } currentRoom={currentRoom} setRoom={setRoom}/>
         ))}
       </div>
     </div>
-
-
   );
   console.log("after the return");
 

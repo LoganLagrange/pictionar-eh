@@ -40,7 +40,7 @@ export default function Homepage() {
 
     return (
       <header style={headerStyle} className="header">
-        <h1 style={headingStyle}>Welcome to Pictionar-eh</h1>
+        <h1 className={headingStyle}>Welcome to Pictionar-eh!🍁</h1>
         <div>
           {room.map(room=>(
           <RoomCard key={room.id} name={room}/>
@@ -49,7 +49,7 @@ export default function Homepage() {
           <button>Join Existing Room</button>
         </Link>
         <Link to="/create-room">
-          <button>Create New Room</button>
+          <button className='button-gap'>Create New Room</button>
         </Link>
       </div>
       </header>

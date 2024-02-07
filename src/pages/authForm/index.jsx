@@ -48,8 +48,8 @@ export default function AuthForm(props) {
     <div className="AuthForm">
       <h3>{props.type}</h3>
       <form onSubmit={subHandle}>
-        <input type="text" value={username} onChange={e=>setusername(e.target.value)} />
-        <input type="password" value={password} onChange={e=>setPassword(e.target.value)} />
+        <input placeholder="Username" type="text" value={username} onChange={e=>setusername(e.target.value)} />
+        <input placeholder="Password" type="password" value={password} onChange={e=>setPassword(e.target.value)} />
         <button>{props.type}</button>
       </form>
     </div>
