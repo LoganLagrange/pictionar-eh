@@ -8,7 +8,11 @@ export default function Game({currentRoom, setRoom}) {
   const [drawer, setDrawer] = useState(false);
 
   useEffect(()=>{
-    socketUse.
+    const handleDrawerUpdate = (drawerStatus) => {
+      setDrawer(drawerStatus)
+    };
+
+    socketUse.recDrawer(handleDrawerUpdate);
   })
 
   const styles = {
