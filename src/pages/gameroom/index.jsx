@@ -24,56 +24,25 @@ export default function Game({ currentRoom, setRoom }) {
     socketUse.recDraw(handleDrawChange)
   })
 
-  const styles = {
-    gamepageStyles: {
-      background: 'red',
-      display: 'flex', // Add display: flex to the gamepageStyles
-      flexDirection: 'column', // Use flex column layout
-      alignItems: 'center',
-      justifyContent: 'center', // Center both horizontally and vertically
-      minHeight: '100vh', // Set min height to 100% of viewport height
-      padding: '20px',
-    },
-    flexContainer: {
-      display: 'flex',
-      justifyContent: 'flex-start', // Adjusted for even spacing
-      alignItems: 'flex-start',
-      width: '100%', // Set width to 100%
-      maxWidth: '800px', // Optionally set a maximum width for content
-    },
-    canvasContainer: {
-      width: '400px', // Set width of the canvas container
-      marginRight: '50px', // Space between canvas and chat
-    },
-    chatContainer: {
-      flex: '1', // Allow the chat container to grow to fill available space
-      minWidth: '300px', // Set minimum width for chat container
-      overflow: 'hidden', // Hide overflow to prevent it from pushing content
-    },
-    wordDisplay: {
-      textAlign: 'center', // Center align the word display
-      marginBottom: '20px', // Space between word display and canvas/chat
-    },
-  };
-
+  
   return (
-    <section style={styles.gamepageStyles} className="section">
+    <section className='gamepageStyles section'>
       <h2 className='card-title'>PICTIONAR'EH'</h2>
-      <div style={styles.wordDisplay}>
+      <div className='wordDisplay'>
         {/* <p className='card-word'>Your word is: {props.word}</p> */}
       </div>
-      <div style={styles.flexContainer}>
+      <div className='flexContainer'>
         {drawer ? (
-          <div style={styles.canvasContainer} className="canvas-container">
+          <div className='canvasContainer canvas-container'>
             <DrawingCanvas currentRoom={currentRoom} setRoom={setRoom}/>
           </div>
         ) : (
-          <div style={styles.canvasContainer} className="canvas-container">
+          <div className='canvasContainer canvas-container'>
             {drawing && <img src={drawing} alt="" />}
           </div>
         )}
 
-        <div style={styles.chatContainer} className="chat-container">
+        <div className='chatContainer chat-container'>
           <ChatBox currentRoom={currentRoom} setRoom={setRoom} />
         </div>
       </div>

@@ -29,6 +29,20 @@ button {
 
 .room-card {
   margin-left: 50px;
-  margin-top: 50px;
+  margin-top: 10px;
   flex-direction: column;
 }
+
+.canadian-flag-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.canadian-flag {
+  width: 200px; /* Set the desired width */
+  height: 150px; /* Set the desired height */
+  object-fit: cover; /* Adjust to control how the image fits within the container */
+  margin-right: 10px;
+}
+
