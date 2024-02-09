@@ -21,6 +21,7 @@ function App() {
 
   const handleHighscore = (userId) => {
     API.highscore(userId).then(userObj=>{
+      console.log("userObj:", userObj)
       const myHighscore = userObj.highscore
       localStorage.setItem('myHighscore', myHighscore);
     })
@@ -30,7 +31,9 @@ function App() {
     API.login(loginObj).then(loginData=>{
       setToken(loginData.token);
       setIsLoggedIn(true);
+      console.log("loginData:", loginData)
       setUserId(loginData.user.id);
+      localStorage.setItem('userId', loginData.user.id)
     }).catch(err=>{
       console.log('error', err)
     })

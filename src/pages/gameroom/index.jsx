@@ -26,8 +26,8 @@ export default function Game({ currentRoom, setRoom, getHS, userId, setUserId })
   })
 
   useEffect(()=>{
-    const user = getHS(userId);
-  })
+    getHS(userId);
+  }, [getHS])
 
   const styles = {
     gamepageStyles: {
