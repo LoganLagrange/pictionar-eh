@@ -3,8 +3,9 @@ import DrawingCanvas from '../../components/DrawingCanvas'; // Import the Drawin
 import ChatBox from '../../components/ChatBox'; // Import the ChatBox component
 import "./style.css";
 import socketUse from '../../utils/socket'
+import API from '../../utils/API'
 
-export default function Game({ currentRoom, setRoom }) {
+export default function Game({ currentRoom, setRoom, getHS, userId, setUserId }) {
   const [drawer, setDrawer] = useState(false);
   const [drawing, setDrawing] = useState()
 
@@ -23,6 +24,11 @@ export default function Game({ currentRoom, setRoom }) {
 
     socketUse.recDraw(handleDrawChange)
   })
+
+
+  useEffect(()=>{
+    getHS(userId);
+  }, [getHS])
 
   
   return (
