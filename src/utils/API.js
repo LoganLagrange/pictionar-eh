@@ -42,6 +42,16 @@ const API = {
                 });
             }
         })
+    },
+    highscore: (id) => {
+        return fetch(`${URL_PREFIX}/api/users/${id}`)
+            .then(res=>{
+                if(res.ok) {
+                    return res.json()
+                } else {
+                    throw new Error('Failed finding user')
+                }
+            });
     }
 }
 

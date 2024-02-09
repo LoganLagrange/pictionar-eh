@@ -19,6 +19,13 @@ function App() {
   const [userId, setUserId] = useState(0);
   const [currentRoom, setRoom] = useState('');
 
+  const handleHighscore = (userId) => {
+    API.highscore(userId).then(userObj=>{
+      const myHighscore = userObj.highscore
+      localStorage.setItem('myHighscore', myHighscore);
+    })
+  }
+
   const handleLogin = loginObj => {
     API.login(loginObj).then(loginData=>{
       setToken(loginData.token);
@@ -58,7 +65,7 @@ function App() {
         <Route path="/join-room" element={<JoinRoom currentRoom={currentRoom} setRoom={setRoom}/>} />
         <Route path='/login' element={<AuthForm type="login" handleSubmit={handleLogin}/>}/>
         <Route path='/signup' element={<AuthForm type="signup" handleSubmit={handleSignup}/>}/>
-        <Route path="/game" element={<Game currentRoom={currentRoom} setRoom={setRoom}/>} />
+        <Route path="/game" element={<Game currentRoom={currentRoom} setRoom={setRoom} getHS={handleHighscore} userId={userId} setUserId={setUserId}/>} />
         <Route path="/create-room" element={<CreateRoomForm onSubmit={handleCreateRoom} currentRoom={currentRoom} setRoom={setRoom}/>} />
       </Routes>
     </Router>
