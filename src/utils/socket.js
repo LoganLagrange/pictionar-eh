@@ -54,7 +54,8 @@ const socketUse = {
     },
 
     sendMessage: (room, message) => {
-        socket.emit('message', room, message);
+        const username = localStorage('username')
+        socket.emit('message', room, message, username);
     },
 
     sendDraw: (room, change) => {
