@@ -6,6 +6,7 @@ import "./style.css"
 import API from "../../utils/API"
 import JoinRoom from '../JoinRoom';
 import RoomCard from '../../components/GameRooms/RoomCard';
+import Pictionarehlogo from '../../assets/Pictionar-EH.png'
 
 export default function Homepage() {
   const headerStyle = {
@@ -40,6 +41,7 @@ export default function Homepage() {
 
     return (
       <header style={headerStyle} className="header">
+        <img src={Pictionarehlogo} alt="pictionarehlogo" className="pictionareh-logo" />
         <h1 className={headingStyle}>Welcome to Pictionar-eh!🍁</h1>
         <div>
           {room.map(room=>(

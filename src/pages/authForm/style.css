@@ -13,7 +13,8 @@ img {
 }
 
 .AuthForm {
-    max-width: 400px; /* Adjust the maximum width as needed */
+  margin-top: 10px; 
+  max-width: 400px; /* Adjust the maximum width as needed */
     margin: auto;
     text-align: center;
   }
@@ -30,7 +31,8 @@ img {
   }
   
 .AuthForm input {
-    margin-bottom: 10px; /* Adjust the margin as needed */
+  margin-top: 10px;  
+  margin-bottom: 10px; /* Adjust the margin as needed */
     padding: 8px;
     width: 100%;
   }
