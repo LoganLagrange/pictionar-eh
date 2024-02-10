@@ -37,6 +37,7 @@ export default function AuthForm(props) {
         password
       });
       console.log(`${props.type} successful!`)
+      localStorage.setItem('username', username)
       navigate("/")
     } catch (err) {
       console.log(`${props.type} failed!`, err)

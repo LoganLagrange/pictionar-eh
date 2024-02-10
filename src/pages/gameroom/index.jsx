@@ -4,6 +4,7 @@ import ChatBox from '../../components/ChatBox'; // Import the ChatBox component
 import Timer from '../../components/Timer';
 import "./style.css";
 import socketUse from '../../utils/socket'
+import API from '../../utils/API'
 
 var secondsLeft = 75;
 
@@ -21,7 +22,7 @@ function setTime() {
     }, 1000);
 }
 
-export default function Game({ currentRoom, setRoom }) {
+export default function Game({ currentRoom, setRoom, getHS, userId, setUserId }) {
   
   const [drawer, setDrawer] = useState(false);
   const [drawing, setDrawing] = useState()
@@ -43,8 +44,11 @@ export default function Game({ currentRoom, setRoom }) {
     
     socketUse.recDraw(handleDrawChange)
   })
-  
-// }
+
+  useEffect(()=>{
+    getHS(userId);
+  }, [getHS])
+
   const styles = {
     gamepageStyles: {
       background: 'red',
