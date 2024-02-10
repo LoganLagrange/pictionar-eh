@@ -1,29 +1,50 @@
 import React, { useEffect, useState } from 'react';
 import DrawingCanvas from '../../components/DrawingCanvas'; // Import the DrawingCanvas component
 import ChatBox from '../../components/ChatBox'; // Import the ChatBox component
+import Timer from '../../components/Timer';
 import "./style.css";
 import socketUse from '../../utils/socket'
 
+var secondsLeft = 75;
+
+function setTime() {
+    // Sets interval in variable
+    var timerInterval = setInterval(function() {
+        secondsLeft--;
+        // timeEl.textContent = "Timer: " + secondsLeft;
+
+        if (secondsLeft <= 0) {
+            // Stops execution of action at set interval
+            clearInterval(timerInterval);
+            // Calls function to create and append image
+        }
+    }, 1000);
+}
+
 export default function Game({ currentRoom, setRoom }) {
+  
   const [drawer, setDrawer] = useState(false);
   const [drawing, setDrawing] = useState()
-
-  useEffect(() => {
-    const handleDrawerUpdate = (drawerStatus) => {
-      setDrawer(drawerStatus)
-    };
-
+  // while(secondsLeft>=0){
+    useEffect(() => {
+      const handleDrawerUpdate = (drawerStatus) => {
+        setDrawer(drawerStatus)
+      };
+      
+      setTime();
+      console.log(secondsLeft);
     socketUse.recDrawer(handleDrawerUpdate);
   })
-
+  
   useEffect(()=>{
     const handleDrawChange = (change) => {
       setDrawing(change)
     };
-
+    
     socketUse.recDraw(handleDrawChange)
   })
-
+  
+// }
   const styles = {
     gamepageStyles: {
       background: 'red',
@@ -59,6 +80,7 @@ export default function Game({ currentRoom, setRoom }) {
   return (
     <section style={styles.gamepageStyles} className="section">
       <h2 className='card-title'>PICTIONAR'EH'</h2>
+      <Timer/>
       <div style={styles.wordDisplay}>
         {/* <p className='card-word'>Your word is: {props.word}</p> */}
       </div>
@@ -83,3 +105,4 @@ export default function Game({ currentRoom, setRoom }) {
     </section>
   );
 }
+

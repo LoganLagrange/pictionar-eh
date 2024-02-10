@@ -3,6 +3,7 @@ import saveData from '../components/DrawingCanvas'
 // CRITICAL replace with production url
 const socket = io('http://localhost:5001/')
 
+
 const socketUse = {
     // Socket event listeners
     connect: (room) => {
@@ -16,6 +17,11 @@ const socketUse = {
 
     },
 
+    RecTimer: (setTimers) => {
+        socket.on('startTime', timeLeft => {
+            setTimers((prevTimer) => [...prevTimer, timeLeft]);
+        })
+    },
     RecMessage: (setMessages) => {
         socket.on('broadcastMessage', message => {
             setMessages((prevMessages) => [...prevMessages, message]);
