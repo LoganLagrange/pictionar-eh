@@ -60,7 +60,7 @@ const socketUse = {
     },
 
     sendMessage: (room, message) => {
-        const username = localStorage('username')
+        const username = localStorage.getItem('username');
         socket.emit('message', room, message, username);
     },
 
