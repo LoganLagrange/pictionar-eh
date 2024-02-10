@@ -33,7 +33,7 @@ export default function Game({ currentRoom, setRoom, getHS, userId, setUserId })
       };
       
       // setTime();
-      console.log(secondsLeft);
+      // console.log(timeLeft);
     socketUse.recDrawer(handleDrawerUpdate);
   })
   

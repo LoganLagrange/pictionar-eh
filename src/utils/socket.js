@@ -17,9 +17,9 @@ const socketUse = {
 
     },
 
-    RecTimer: (setTimers) => {
+    RecTimer: (setTimer) => {
         socket.on('startTime', timeLeft => {
-            setTimers((prevTimer) => [...prevTimer, timeLeft]);
+            setTimer(timeLeft);
         })
     },
     RecMessage: (setMessages) => {
