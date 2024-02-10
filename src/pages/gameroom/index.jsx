@@ -1,54 +1,90 @@
 import React, { useEffect, useState } from 'react';
 import DrawingCanvas from '../../components/DrawingCanvas'; // Import the DrawingCanvas component
 import ChatBox from '../../components/ChatBox'; // Import the ChatBox component
+import Timer from '../../components/Timer';
 import "./style.css";
 import socketUse from '../../utils/socket'
 import API from '../../utils/API'
 
+
 export default function Game({ currentRoom, setRoom, getHS, userId, setUserId }) {
+  
   const [drawer, setDrawer] = useState(false);
   const [drawing, setDrawing] = useState()
-
-  useEffect(() => {
-    const handleDrawerUpdate = (drawerStatus) => {
-      setDrawer(drawerStatus)
-    };
-
+  // while(secondsLeft>=0){
+    useEffect(() => {
+      const handleDrawerUpdate = (drawerStatus) => {
+        setDrawer(drawerStatus)
+      };
+      
+      // setTime();
+      // console.log(timeLeft);
     socketUse.recDrawer(handleDrawerUpdate);
   })
-
+  
   useEffect(()=>{
     const handleDrawChange = (change) => {
       setDrawing(change)
     };
-
+    
     socketUse.recDraw(handleDrawChange)
   })
-
 
   useEffect(()=>{
     getHS(userId);
   }, [getHS])
 
-  
+  const styles = {
+    gamepageStyles: {
+      background: 'red',
+      display: 'flex', // Add display: flex to the gamepageStyles
+      flexDirection: 'column', // Use flex column layout
+      alignItems: 'center',
+      justifyContent: 'center', // Center both horizontally and vertically
+      minHeight: '100vh', // Set min height to 100% of viewport height
+      padding: '20px',
+    },
+    flexContainer: {
+      display: 'flex',
+      justifyContent: 'flex-start', // Adjusted for even spacing
+      alignItems: 'flex-start',
+      width: '100%', // Set width to 100%
+      maxWidth: '800px', // Optionally set a maximum width for content
+    },
+    canvasContainer: {
+      width: '400px', // Set width of the canvas container
+      marginRight: '50px', // Space between canvas and chat
+    },
+    chatContainer: {
+      flex: '1', // Allow the chat container to grow to fill available space
+      minWidth: '300px', // Set minimum width for chat container
+      overflow: 'hidden', // Hide overflow to prevent it from pushing content
+    },
+    wordDisplay: {
+      textAlign: 'center', // Center align the word display
+      marginBottom: '20px', // Space between word display and canvas/chat
+    },
+  };
+
   return (
-    <section className='gamepageStyles section'>
+    <section style={styles.gamepageStyles} className="section">
       <h2 className='card-title'>PICTIONAR'EH'</h2>
-      <div className='wordDisplay'>
+      <Timer/>
+      <div style={styles.wordDisplay}>
         {/* <p className='card-word'>Your word is: {props.word}</p> */}
       </div>
-      <div className='flexContainer'>
+      <div style={styles.flexContainer}>
         {drawer ? (
-          <div className='canvasContainer canvas-container'>
+          <div style={styles.canvasContainer} className="canvas-container">
             <DrawingCanvas currentRoom={currentRoom} setRoom={setRoom}/>
           </div>
         ) : (
-          <div className='canvasContainer canvas-container'>
+          <div style={styles.canvasContainer} className="canvas-container">
             {drawing && <img src={drawing} alt="" />}
           </div>
         )}
 
-        <div className='chatContainer chat-container'>
+        <div style={styles.chatContainer} className="chat-container">
           <ChatBox currentRoom={currentRoom} setRoom={setRoom} />
         </div>
       </div>
