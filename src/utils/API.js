@@ -52,6 +52,21 @@ const API = {
                     throw new Error('Failed finding user')
                 }
             });
+    },
+    updateHs: (id, score) => {
+        return fetch(`${URL_PREFIX}/api/users/${id}`, {
+            method: "POST",
+            body: JSON.stringify(score),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(res => {
+            if(res.ok) {
+                return res.json()
+            } else {
+                throw new Error('Failed updating highscore')
+            }
+        })
     }
 }
 
