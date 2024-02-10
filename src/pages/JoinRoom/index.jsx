@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import RoomCard from '../../components/GameRooms/RoomCard';
 import '../JoinRoom/style.css'
 import socketUse from '../../utils/socket';
+import CanadaFlag from '../../assets/Canada.png'
 
 const JoinRoom = ({currentRoom, setRoom}) => {
   // const {user} = useAuth();
@@ -14,26 +15,43 @@ const JoinRoom = ({currentRoom, setRoom}) => {
   useEffect(() => {
       socketUse.connect();
       socketUse.recRooms((receivedRooms) => {
-        setRooms(receivedRooms);
+        console.log('received room')
+        console.log(receivedRooms)
+        // setRooms(receivedRooms);
       });
       socketUse.requestRooms();
       console.log(rooms);
 
   }, []);
 
+  // Define handleJoinRoom function
+  const handleJoinRoom = (roomId) => {
+    // Your logic for joining a room goes here
+    console.log(`Joining room ${roomId}`);
+    // Set the current room
+    setRoom(roomId);
+  };
+
   let roomArr = document.querySelector(`.join-room-container`);
   console.log(roomArr);
-  // roomArr.addEventListener(onclick,(e)=>{
+  // roomArr.addEventListener('click',(e)=>{
   //   console.log(e.target);
   // });
 
   return (
-    <div className="join-room-container">
+    <div className="join-room-container" onClick={(e) => console.log(e.target)}>
+      <h1>Select an existing room to join!</h1>
       <div className="flex-container">
-        <h1>Select an existing room to join!</h1>
-        {Object.keys(rooms).map((roomName) => (
-          // <RoomCard key={room.id} roomName = {room.name} room={room} onJoinRoom={handleJoinRoom} />
-          <RoomCard key={roomName} room={{name: roomName, count: rooms[roomName].count} } currentRoom={currentRoom} setRoom={setRoom}/>
+      {Object.keys(rooms).map((roomName) => (
+          <React.Fragment key={roomName}>
+          <RoomCard 
+          key={roomName} 
+          room={{name: roomName, count: rooms[roomName].count} } 
+          currentRoom={currentRoom} 
+          setRoom={setRoom}
+          onJoinRoom={() => handleJoinRoom(roomName)}
+          />
+          </React.Fragment>
         ))}
       </div>
     </div>

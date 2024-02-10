@@ -6,21 +6,6 @@ import "./style.css";
 import socketUse from '../../utils/socket'
 import API from '../../utils/API'
 
-// var secondsLeft = 75;
-
-// function setTime() {
-//     // Sets interval in variable
-//     var timerInterval = setInterval(function() {
-//         secondsLeft--;
-//         // timeEl.textContent = "Timer: " + secondsLeft;
-
-//         if (secondsLeft <= 0) {
-//             // Stops execution of action at set interval
-//             clearInterval(timerInterval);
-//             // Calls function to create and append image
-//         }
-//     }, 1000);
-// }
 
 export default function Game({ currentRoom, setRoom, getHS, userId, setUserId }) {
   
@@ -109,4 +94,3 @@ export default function Game({ currentRoom, setRoom, getHS, userId, setUserId })
     </section>
   );
 }
-

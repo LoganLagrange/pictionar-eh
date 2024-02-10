@@ -3,14 +3,16 @@
   flex-direction: row;
   align-items: center;
   border: 1px solid #eb0f0f;
-  padding: 16px;
+  padding: 100px;
   margin: 16px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 200px; 
+  width: 400px; 
+  height: 200px;
 }
 
 .room-card h3 {
+  margin-top: 17px;
   margin-bottom: 8px;
 }
 
@@ -37,3 +39,8 @@
     justify-content: center;
     border-color: #eb0f0f;
   }
+  
+  .room-details {
+    margin-right: 10px;
+  }
+  
