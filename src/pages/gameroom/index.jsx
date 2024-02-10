@@ -1,27 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import DrawingCanvas from '../../components/DrawingCanvas'; // Import the DrawingCanvas component
 import ChatBox from '../../components/ChatBox'; // Import the ChatBox component
+import Timer from '../../components/Timer';
 import "./style.css";
 import socketUse from '../../utils/socket'
 import API from '../../utils/API'
 
+
 export default function Game({ currentRoom, setRoom, getHS, userId, setUserId }) {
+  
   const [drawer, setDrawer] = useState(false);
   const [drawing, setDrawing] = useState()
-
-  useEffect(() => {
-    const handleDrawerUpdate = (drawerStatus) => {
-      setDrawer(drawerStatus)
-    };
-
+  // while(secondsLeft>=0){
+    useEffect(() => {
+      const handleDrawerUpdate = (drawerStatus) => {
+        setDrawer(drawerStatus)
+      };
+      
+      // setTime();
+      // console.log(timeLeft);
     socketUse.recDrawer(handleDrawerUpdate);
   })
-
+  
   useEffect(()=>{
     const handleDrawChange = (change) => {
       setDrawing(change)
     };
-
+    
     socketUse.recDraw(handleDrawChange)
   })
 
@@ -64,6 +69,7 @@ export default function Game({ currentRoom, setRoom, getHS, userId, setUserId })
   return (
     <section style={styles.gamepageStyles} className="section">
       <h2 className='card-title'>PICTIONAR'EH'</h2>
+      <Timer/>
       <div style={styles.wordDisplay}>
         {/* <p className='card-word'>Your word is: {props.word}</p> */}
       </div>
