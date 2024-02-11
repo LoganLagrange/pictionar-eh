@@ -1,0 +1,68 @@
+/* Create Room Form Styling */
+form.create-room-form {
+    max-width: 400px; /* Adjust the maximum width as needed */
+    margin: auto;
+    text-align: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+.room-input {
+    margin-bottom: 10px; /* Adjust the margin as needed */
+    padding: 8px;
+    width: 100%;
+}
+  .createRoomForm form {
+    flex-direction: column;
+    align-items: center;
+  }
+
+button {
+    padding: 10px;
+    background-color: #007bff; /* Adjust the background color as needed */
+    color: #fff; /* Adjust the text color as needed */
+    border: none;
+    cursor: pointer;
+    align-items: center;
+  } 
+
+/* Join Room Card Styling */
+
+.room-card {
+  margin-left: 50px;
+  margin-top: 10px;
+  flex-direction: column;
+}
+
+.canadian-flag-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.canadian-flag {
+  width: 200px; /* Set the desired width */
+  height: 150px; /* Set the desired height */
+  object-fit: cover; /* Adjust to control how the image fits within the container */
+  margin-right: 10px;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+}
+
+.incomingMsg {
+  border-radius: 20px 20px 20px 0px;
+  border:solid 2px rgb(189, 91, 91);
+  align-self: flex-start;
+  background-color: rgb(255, 124, 124);
+  padding:10px;
+}
+
+.outgoingMsg {
+  border-radius: 20px 20px 0px 20px;
+  border: solid 2px rgb(143, 109, 46);
+  align-self: flex-end;
+  background-color: rgb(207, 157, 64);
+  padding:10px;
+}

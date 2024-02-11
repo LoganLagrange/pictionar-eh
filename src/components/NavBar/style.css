@@ -1,0 +1,11 @@
+.NavBar {
+    height: 10vh;
+    border-bottom: 10px solid #eb0f0f;
+    box-sizing: border-box;
+    gap: 15px;
+    display: flex;
+}
+
+.NavBar a {
+    margin-right: 15px;
+}

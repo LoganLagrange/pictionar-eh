@@ -1,0 +1,21 @@
+.header {
+    background: #b71775;
+    height: 450px;
+  }
+
+.pictionareh-logo {
+  height: 300px;
+  width: 300px;
+}
+.header h1 {
+    margin: 0;
+    padding-top: 5px;
+    text-align: center;
+    color: #eb0f0f;
+    font-size: 1.5rem;
+  }
+
+.button-gap {
+  margin-top: 10px;
+  margin-left: 10px;
+}

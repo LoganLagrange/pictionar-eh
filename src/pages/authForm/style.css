@@ -1,0 +1,48 @@
+:root {
+    --onyx: #474448ff;
+    --raisin-black: #2d232eff;
+    --bone: #e0ddcfff;
+    --cool-gray: #9a94bcff;
+    --rose-quartz: #9888a5ff;
+}
+
+/* img {
+    height: 150px;
+    width: 145.75px;
+    border-radius: 50%;
+} */
+
+.AuthForm {
+  margin-top: 10px; 
+  max-width: 400px; /* Adjust the maximum width as needed */
+    margin: auto;
+    text-align: center;
+  }
+  
+.AuthForm h3 {
+    text-transform: capitalize;
+    margin-bottom: 10px; /* Adjust the margin as needed */
+  }
+  
+.AuthForm form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+.AuthForm input {
+  margin-top: 10px;  
+  margin-bottom: 10px; /* Adjust the margin as needed */
+    padding: 8px;
+    width: 100%;
+  }
+  
+.AuthForm button {
+    padding: 10px;
+    background-color: #007bff; /* Adjust the background color as needed */
+    color: #fff; /* Adjust the text color as needed */
+    border: none;
+    cursor: pointer;
+    text-transform: capitalize;
+  }
+  
