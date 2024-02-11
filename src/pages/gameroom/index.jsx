@@ -34,7 +34,7 @@ export default function Game({ currentRoom, setRoom, getHS, userId, setUserId })
 
     return () => {
       isMounted = false
-      socketUse.leaveRoom(currentRoom);
+      // socketUse.leaveRoom(currentRoom);
     }
   })
 
