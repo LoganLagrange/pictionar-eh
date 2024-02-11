@@ -1,5 +1,5 @@
 import { io } from 'socket.io-client'
-import saveData from '../components/DrawingCanvas'
+import saveData from '../components/GameFunctions/DrawingCanvas'
 // CRITICAL replace with production url
 const socket = io('http://localhost:5001/')
 
@@ -26,11 +26,11 @@ const socketUse = {
         console.log('recMessage trigger')
         socket.on('broadcastMessage', (message, username, correctBool) => {
             const currentUsername = localStorage.getItem('username');
-            setMessages((prevMessages) => [...prevMessages, {message:message, username:username}]);
+            setMessages((prevMessages) => [...prevMessages, { message: message, username: username }]);
             console.log('recMessage: message received:', message)
-            
+
             // console.log('recMEssage:', currentUsername)
-            if(username === currentUsername && correctBool === true) {
+            if (username === currentUsername && correctBool === true) {
                 const currentScore = parseInt(localStorage.getItem('currentScore'))
                 const newScore = currentScore + timerVal;
                 localStorage.setItem('currentScore', newScore)

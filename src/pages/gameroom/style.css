@@ -26,7 +26,6 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    background-color: white;
     width: 100%;
     max-width: 800px;
     margin-top: 20px;
@@ -37,7 +36,9 @@
   }
   
   .canvasContainer {
+    background-color: #fff;
     width: 400px;
+    height: 400px;
     margin-right: 20px;
   }
 
@@ -49,6 +50,12 @@
     box-shadow: 0 2px 4px #df1111;
     border-radius: 8px;
     margin-left: 5px;
+  }
+
+  .viewingContainer {
+    width: 400px;
+    height: 400px;
+    background-color: #fff;
   }
 
   .picker-container {

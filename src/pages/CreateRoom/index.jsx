@@ -4,6 +4,7 @@ import axios from "axios"; // Import the axios module for making HTTP requests
 import {useNavigate} from 'react-router-dom'; // Import useNavigate
 import { useAuth } from "../Context/authcontext";
 import "./style.css";
+import socketUse from "../../utils/socket";
 
 //Add event listener to form submit button
 const CreateRoomForm = () => {
@@ -15,6 +16,7 @@ const CreateRoomForm = () => {
         console.log('LogIn to create a room!');
         return;
       }
+      console.log('User entered room name:', roomName);
       try {
         // Make a POST request to your socket.io server using axios
         const response = await axios.post("http://socket.io/api/rooms", {
