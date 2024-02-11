@@ -14,21 +14,28 @@ export default function Game({ currentRoom, setRoom, getHS, userId, setUserId })
   const [timeLeft, setTimer] = useState('');
   // while(secondsLeft>=0){
     useEffect(() => {
-      const handleDrawerUpdate = (drawerStatus) => {
-        setDrawer(drawerStatus)
+      let isMounted = true;
+      if(isMounted) {
+        const handleDrawerUpdate = (drawerStatus) => {
+          setDrawer(drawerStatus)
+        };
+        
+        // setTime();
+        // console.log(timeLeft);
+      socketUse.recDrawer(handleDrawerUpdate);
+    
+      const handleDrawChange = (change) => {
+        setDrawing(change)
       };
       
-      // setTime();
-      // console.log(timeLeft);
-    socketUse.recDrawer(handleDrawerUpdate);
-  })
-  
-  useEffect(()=>{
-    const handleDrawChange = (change) => {
-      setDrawing(change)
-    };
-    
-    socketUse.recDraw(handleDrawChange)
+      socketUse.recDraw(handleDrawChange)
+      }
+      
+
+    return () => {
+      isMounted = false
+      socketUse.leaveRoom(currentRoom);
+    }
   })
 
   useEffect(()=>{
