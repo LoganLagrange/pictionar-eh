@@ -10,6 +10,8 @@ export default function ChatBox({currentRoom, setRoom}) {
 
   useEffect(() => {
     let isMounted = true;
+
+    if(isMounted) {
     // Initialize current score
     localStorage.setItem('currentScore', 0)
 
@@ -25,10 +27,11 @@ export default function ChatBox({currentRoom, setRoom}) {
           // Scroll to the bottom of the messages when new messages are added
           messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
         }
-      
+      console.log(messages)
     }
 
     recMessageTimer();
+  }
     
     return () => {
       isMounted = false;
@@ -50,7 +53,7 @@ export default function ChatBox({currentRoom, setRoom}) {
       // Send message to socket server
       socketUse.sendMessage(currentRoom, message)
 
-      setMessages([...messages, {message: message}]);
+      setMessages(prevMessages => [...prevMessages, {message: message}]);
       setMessage('');
     }
   };
@@ -60,7 +63,7 @@ export default function ChatBox({currentRoom, setRoom}) {
       <div className="messages-container" ref={messagesContainerRef}>
         <div className="messages">
           {messages.map((msg, index) => (
-            <p key={index}>{msg.message}</p>
+            <p key={index}>{typeof msg.message === 'string' ? msg.message : ''}</p>
           ))}
         </div>
       </div>
