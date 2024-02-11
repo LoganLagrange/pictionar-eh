@@ -3,7 +3,7 @@ import "../pages/gameroom/style.css"; // Importing CSS styles
 import socketUse from '../utils/socket';
 import API from '../utils/API';
 
-export default function ChatBox({currentRoom, setRoom, timeLeft, setTimer}) {
+export default function ChatBox({ currentRoom, setRoom, timeLeft, setTimer }) {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
   const messagesContainerRef = useRef(null); // Reference to the messages container
@@ -11,33 +11,33 @@ export default function ChatBox({currentRoom, setRoom, timeLeft, setTimer}) {
   useEffect(() => {
     let isMounted = true;
 
-    if(isMounted) {
-    // Initialize current score
-    localStorage.setItem('currentScore', 0)
+    if (isMounted) {
+      // Initialize current score
+      localStorage.setItem('currentScore', 0)
 
-    // Grab current timer value from state
-    const timerVal = timeLeft
+      // Grab current timer value from state
+      const timerVal = timeLeft
 
-    // Wrapper function to allow for callback
-    const recMessageTimer = () => {
-      // Activate socket method for listening for incoming messages
-      socketUse.RecMessage(setMessages, timerVal)
-    
+      // Wrapper function to allow for callback
+      const recMessageTimer = () => {
+        // Activate socket method for listening for incoming messages
+        socketUse.RecMessage(setMessages, timerVal)
+
         if (messagesContainerRef.current) {
           // Scroll to the bottom of the messages when new messages are added
           messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
         }
-      console.log(messages)
+        console.log(messages)
+      }
+
+      recMessageTimer();
     }
 
-    recMessageTimer();
-  }
-    
     return () => {
       isMounted = false;
       socketUse.leaveRoom(currentRoom);
     }
-    
+
   }, []);
 
   const handleMessageChange = (e) => {
@@ -48,7 +48,7 @@ export default function ChatBox({currentRoom, setRoom, timeLeft, setTimer}) {
   // for sending any thing on a message send
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     console.log("hello submit message !");
     if (message.trim()) {
       // Send message to socket server

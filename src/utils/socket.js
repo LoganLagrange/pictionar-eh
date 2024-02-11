@@ -79,7 +79,8 @@ const socketUse = {
     },
 
     leaveRoom: (room) => {
-        socket.emit('leave', room)
+        socket.emit('leave', room);
+        socket.off('broadcastMessage');
     }
 
 
