@@ -52,6 +52,7 @@ export default function Game({ currentRoom, setRoom, getHS, userId, setUserId })
       <h2 className='card-title'>PICTIONAR'EH'</h2>
       <Timer timeLeft={timeLeft} setTimer={setTimer} />
       <h2 className='card-title'>{`Your score is: ${localStorage.getItem('currentScore')}`}</h2>
+      <h2 className='card-title'>{`Your high-score is: ${localStorage.getItem('myHighscore')}`}</h2>
       {drawer ? (
         <div className='wordDisplay'>
           <h2 className='card-title'>{`The word to draw is: ${localStorage.getItem('selectedWord')}`}</h2>
