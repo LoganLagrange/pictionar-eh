@@ -10,8 +10,9 @@ import NavBar from './components/NavBar'; // Import NavBar
 import NewRoom from './components/GameRooms/CreateRoomForm'; // Import NewRoom
 import API from './utils/API';
 import socketUse from './utils/socket'
-import TestConnection from './components/TestConnection';
+import TestConnection from './components/GameFunctions/TestConnection';
 import { AuthProvider } from './pages/Context/authcontext';
+import CanvasComponent from "./components/GameFunctions/DrawingCanvas";
 
 function App() {
   const [token, setToken] = useState("");
