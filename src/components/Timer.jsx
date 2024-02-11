@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import socketUse from '../utils/socket';
 
 
-const Timer = () => {
-  const [timeLeft, setTimer] = useState('');
+const Timer = ({ timeLeft, setTimer }) => {
+  
 
   useEffect(() => {
     let isMounted = true;
