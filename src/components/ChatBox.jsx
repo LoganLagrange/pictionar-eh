@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import "../pages/gameroom/style.css"; // Importing CSS styles
 import socketUse from '../utils/socket';
+import API from '../utils/API';
 
 export default function ChatBox({currentRoom, setRoom}) {
   const [message, setMessage] = useState('');
@@ -9,16 +10,29 @@ export default function ChatBox({currentRoom, setRoom}) {
 
   useEffect(() => {
     let isMounted = true;
-    // Activate socket method for listening for incoming messages
-    socketUse.RecMessage((newMessages) => {
-      if(isMounted) {
-        setMessages(newMessages);
+
+    if(isMounted) {
+    // Initialize current score
+    localStorage.setItem('currentScore', 0)
+
+    // Grab current timer value from state
+    const timerVal = 10
+
+    // Wrapper function to allow for callback
+    const recMessageTimer = () => {
+      // Activate socket method for listening for incoming messages
+      socketUse.RecMessage(setMessages, timerVal)
+    
         if (messagesContainerRef.current) {
           // Scroll to the bottom of the messages when new messages are added
           messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
         }
-      }
-    });
+      console.log(messages)
+    }
+
+    recMessageTimer();
+  }
+    
     return () => {
       isMounted = false;
     }
@@ -39,7 +53,7 @@ export default function ChatBox({currentRoom, setRoom}) {
       // Send message to socket server
       socketUse.sendMessage(currentRoom, message)
 
-      setMessages([...messages, message]);
+      setMessages(prevMessages => [...prevMessages, {message: message}]);
       setMessage('');
     }
   };
@@ -49,7 +63,7 @@ export default function ChatBox({currentRoom, setRoom}) {
       <div className="messages-container" ref={messagesContainerRef}>
         <div className="messages">
           {messages.map((msg, index) => (
-            <p key={index}>{msg.message}</p>
+            <p key={index}>{typeof msg.message === 'string' ? msg.message : ''}</p>
           ))}
         </div>
       </div>

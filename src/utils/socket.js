@@ -22,9 +22,18 @@ const socketUse = {
             setTimer(timeLeft);
         })
     },
-    RecMessage: (setMessages) => {
-        socket.on('broadcastMessage', message => {
-            setMessages((prevMessages) => [...prevMessages, message]);
+    RecMessage: (setMessages, timerVal) => {
+        console.log('recMessage trigger')
+        socket.on('broadcastMessage', (message, username, correctBool) => {
+            setMessages((prevMessages) => [...prevMessages, {message:message, username:username}]);
+            console.log('recMessage: message received')
+            const currentUsername = localStorage.getItem('username');
+            console.log('recMEssage:', currentUsername)
+            if(username === currentUsername && correctBool === true) {
+                const currentScore = parseInt(localStorage.getItem('currentScore'))
+                const newScore = currentScore + timerVal;
+                localStorage.setItem('currentScore', newScore)
+            }
         })
     },
 
