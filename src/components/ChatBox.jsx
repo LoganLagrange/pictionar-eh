@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import "../pages/gameroom/style.css"; // Importing CSS styles
 import socketUse from '../utils/socket';
+import API from '../utils/API';
 
 export default function ChatBox({currentRoom, setRoom}) {
   const [message, setMessage] = useState('');
@@ -9,16 +10,26 @@ export default function ChatBox({currentRoom, setRoom}) {
 
   useEffect(() => {
     let isMounted = true;
-    // Activate socket method for listening for incoming messages
-    socketUse.RecMessage((newMessages) => {
-      if(isMounted) {
-        setMessages(newMessages);
+    // Initialize current score
+    localStorage.setItem('currentScore', 0)
+
+    // Grab current timer value from state
+    const timerVal = 10
+
+    // Wrapper function to allow for callback
+    const recMessageTimer = () => {
+      // Activate socket method for listening for incoming messages
+      socketUse.RecMessage(setMessages, timerVal)
+    
         if (messagesContainerRef.current) {
           // Scroll to the bottom of the messages when new messages are added
           messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
         }
-      }
-    });
+      
+    }
+
+    recMessageTimer();
+    
     return () => {
       isMounted = false;
     }
@@ -39,7 +50,7 @@ export default function ChatBox({currentRoom, setRoom}) {
       // Send message to socket server
       socketUse.sendMessage(currentRoom, message)
 
-      setMessages([...messages, message]);
+      setMessages([...messages, {message: message}]);
       setMessage('');
     }
   };
