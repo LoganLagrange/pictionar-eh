@@ -4,7 +4,7 @@ import { useRef } from 'react'
 import API from './API'
 
 // CRITICAL replace with production url
-const socket = io('http://localhost:5001/')
+const socket = io('https://pictionar-eh-socket-53fe94c23753.herokuapp.com/')
 
 
 const socketUse = {
