@@ -1,6 +1,8 @@
 import { io } from 'socket.io-client'
 import saveData from '../components/GameFunctions/DrawingCanvas'
 import { useRef } from 'react'
+import API from './API'
+
 // CRITICAL replace with production url
 const socket = io('http://localhost:5001/')
 
@@ -39,6 +41,17 @@ const socketUse = {
                 const newScore = currentScore + timeLeft;
                 console.log('newScore:', newScore);
                 localStorage.setItem('currentScore', newScore)
+
+                // Check if current score is higher that highscore and update
+                const currentHighscore = localStorage.getItem('myHighscore')
+                console.log('hs before:', currentHighscore)
+                const currentUserId = localStorage.getItem('userId');
+                if(newScore > currentHighscore) {
+                    localStorage.setItem('myHighscore', newScore);
+                    API.updateHs(currentUserId, newScore);
+                    const newHs = localStorage.getItem('myHighscore');
+                    console.log('hs after:', newHs)
+                }
             }
         })
     },

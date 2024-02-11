@@ -55,8 +55,8 @@ const API = {
     },
     updateHs: (id, score) => {
         return fetch(`${URL_PREFIX}/api/users/${id}`, {
-            method: "POST",
-            body: JSON.stringify(score),
+            method: "PUT",
+            body: JSON.stringify({highscore: score}),
             headers: {
                 "Content-Type": "application/json"
             }
