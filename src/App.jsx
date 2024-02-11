@@ -20,8 +20,9 @@ function App() {
   const [userId, setUserId] = useState(0);
   const [currentRoom, setRoom] = useState('');
 
-  const handleHighscore = (userId) => {
-    API.highscore(userId).then(userObj=>{
+  const handleHighscore = () => {
+    const currentUserId = localStorage.getItem('userId')
+    API.highscore(currentUserId).then(userObj=>{
       console.log("userObj:", userObj)
       const myHighscore = userObj.highscore
       localStorage.setItem('myHighscore', myHighscore);
