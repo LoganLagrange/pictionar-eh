@@ -35,6 +35,7 @@ export default function ChatBox({currentRoom, setRoom}) {
     
     return () => {
       isMounted = false;
+      socketUse.leaveRoom(currentRoom);
     }
     
   }, []);
@@ -53,7 +54,7 @@ export default function ChatBox({currentRoom, setRoom}) {
       // Send message to socket server
       socketUse.sendMessage(currentRoom, message)
 
-      setMessages(prevMessages => [...prevMessages, {message: message}]);
+      // setMessages(prevMessages => [...prevMessages, {message: message}]);
       setMessage('');
     }
   };
