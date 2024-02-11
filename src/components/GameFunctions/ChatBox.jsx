@@ -6,6 +6,7 @@ import API from '../../utils/API';
 export default function ChatBox({ currentRoom, setRoom, timeLeft, setTimer }) {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
+  const [timerVal, setTimerVal] = useState(timeLeft);
   const messagesContainerRef = useRef(null); // Reference to the messages container
 
   useEffect(() => {
@@ -21,6 +22,8 @@ export default function ChatBox({ currentRoom, setRoom, timeLeft, setTimer }) {
       // Wrapper function to allow for callback
       const recMessageTimer = () => {
         // Activate socket method for listening for incoming messages
+        console.log(timeLeft);
+        console.log('timerVal going in:', timerVal)
         socketUse.RecMessage(setMessages, timerVal)
 
         if (messagesContainerRef.current) {
@@ -38,7 +41,7 @@ export default function ChatBox({ currentRoom, setRoom, timeLeft, setTimer }) {
       socketUse.leaveRoom(currentRoom);
     }
 
-  }, []);
+  }, [timerVal]);
 
   const handleMessageChange = (e) => {
     setMessage(e.target.value);
@@ -53,6 +56,8 @@ export default function ChatBox({ currentRoom, setRoom, timeLeft, setTimer }) {
     if (message.trim()) {
       // Send message to socket server
       socketUse.sendMessage(currentRoom, message)
+
+      setTimerVal(timeLeft);
 
       // setMessages(prevMessages => [...prevMessages, {message: message}]);
       setMessage('');

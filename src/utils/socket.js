@@ -27,12 +27,15 @@ const socketUse = {
         socket.on('broadcastMessage', (message, username, correctBool) => {
             const currentUsername = localStorage.getItem('username');
             setMessages((prevMessages) => [...prevMessages, { message: message, username: username }]);
-            console.log('recMessage: message received:', message)
+            console.log('recMessage: message received:', message, correctBool, currentUsername, username)
 
             // console.log('recMEssage:', currentUsername)
             if (username === currentUsername && correctBool === true) {
+                console.log('score update trigger')
                 const currentScore = parseInt(localStorage.getItem('currentScore'))
                 const newScore = currentScore + timerVal;
+                console.log('TimerVal:', timerVal);
+                console.log('newScore:', newScore);
                 localStorage.setItem('currentScore', newScore)
             }
         })
