@@ -12,6 +12,7 @@ export default function Game({ currentRoom, setRoom, getHS, userId, setUserId })
   const [drawer, setDrawer] = useState(false);
   const [drawing, setDrawing] = useState()
   const [timeLeft, setTimer] = useState('');
+  
   // while(secondsLeft>=0){
     useEffect(() => {
       let isMounted = true;
@@ -61,7 +62,7 @@ export default function Game({ currentRoom, setRoom, getHS, userId, setUserId })
         )}
 
         <div className='chatContainer chat-container'>
-          <ChatBox currentRoom={currentRoom} setRoom={setRoom} timeLeft={timeLeft} setTimer={setTimer} />
+          <ChatBox currentRoom={currentRoom} setRoom={setRoom} timeLeft={timeLeft}/>
         </div>
       </div>
       <a href="#" className="btn btn-primary">

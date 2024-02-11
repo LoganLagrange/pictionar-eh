@@ -3,10 +3,9 @@ import "../../pages/gameroom/style.css"; // Importing CSS styles
 import socketUse from '../../utils/socket';
 import API from '../../utils/API';
 
-export default function ChatBox({ currentRoom, setRoom, timeLeft, setTimer }) {
+export default function ChatBox({ currentRoom, setRoom, timeLeft, setTimer}) {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
-  const [timerVal, setTimerVal] = useState(timeLeft);
   const messagesContainerRef = useRef(null); // Reference to the messages container
 
   useEffect(() => {
@@ -15,16 +14,17 @@ export default function ChatBox({ currentRoom, setRoom, timeLeft, setTimer }) {
     if (isMounted) {
       // Initialize current score
       localStorage.setItem('currentScore', 0)
+      // const timeLeftRef = useRef(timeLeft);
 
       // Grab current timer value from state
-      const timerVal = timeLeft
+      // const timerVal = timeLeft
 
       // Wrapper function to allow for callback
       const recMessageTimer = () => {
         // Activate socket method for listening for incoming messages
         console.log(timeLeft);
-        console.log('timerVal going in:', timerVal)
-        socketUse.RecMessage(setMessages, timerVal)
+        
+        socketUse.RecMessage(setMessages)
 
         if (messagesContainerRef.current) {
           // Scroll to the bottom of the messages when new messages are added
@@ -41,7 +41,7 @@ export default function ChatBox({ currentRoom, setRoom, timeLeft, setTimer }) {
       socketUse.leaveRoom(currentRoom);
     }
 
-  }, [timerVal]);
+  },[]);
 
   const handleMessageChange = (e) => {
     setMessage(e.target.value);
@@ -57,7 +57,7 @@ export default function ChatBox({ currentRoom, setRoom, timeLeft, setTimer }) {
       // Send message to socket server
       socketUse.sendMessage(currentRoom, message)
 
-      setTimerVal(timeLeft);
+      // setTimerVal(timeLeft);
 
       // setMessages(prevMessages => [...prevMessages, {message: message}]);
       setMessage('');

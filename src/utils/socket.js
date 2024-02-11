@@ -1,5 +1,6 @@
 import { io } from 'socket.io-client'
 import saveData from '../components/GameFunctions/DrawingCanvas'
+import { useRef } from 'react'
 // CRITICAL replace with production url
 const socket = io('http://localhost:5001/')
 
@@ -22,19 +23,20 @@ const socketUse = {
             setTimer(timeLeft);
         })
     },
-    RecMessage: (setMessages, timerVal) => {
+    RecMessage: (setMessages) => {
         console.log('recMessage trigger')
-        socket.on('broadcastMessage', (message, username, correctBool) => {
+        socket.on('broadcastMessage', (message, username, correctBool, timeLeft) => {
             const currentUsername = localStorage.getItem('username');
             setMessages((prevMessages) => [...prevMessages, { message: message, username: username }]);
             console.log('recMessage: message received:', message, correctBool, currentUsername, username)
+
+            
 
             // console.log('recMEssage:', currentUsername)
             if (username === currentUsername && correctBool === true) {
                 console.log('score update trigger')
                 const currentScore = parseInt(localStorage.getItem('currentScore'))
-                const newScore = currentScore + timerVal;
-                console.log('TimerVal:', timerVal);
+                const newScore = currentScore + timeLeft;
                 console.log('newScore:', newScore);
                 localStorage.setItem('currentScore', newScore)
             }
