@@ -65,6 +65,12 @@ const socketUse = {
         })
     },
 
+    recWord: (callback) => {
+        socket.on('chosenWord', data => {
+            callback(data);
+        })
+    },
+
     // Socket emits
     requestRooms: () => {
         socket.emit('requestRooms');

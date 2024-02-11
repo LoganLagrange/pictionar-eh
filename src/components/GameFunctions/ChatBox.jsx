@@ -3,7 +3,7 @@ import "../../pages/gameroom/style.css"; // Importing CSS styles
 import socketUse from '../../utils/socket';
 import API from '../../utils/API';
 
-export default function ChatBox({ currentRoom, setRoom, timeLeft, setTimer}) {
+export default function ChatBox({ currentRoom, setRoom, timeLeft, setTimer }) {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
   const messagesContainerRef = useRef(null); // Reference to the messages container
@@ -23,7 +23,7 @@ export default function ChatBox({ currentRoom, setRoom, timeLeft, setTimer}) {
       const recMessageTimer = () => {
         // Activate socket method for listening for incoming messages
         console.log(timeLeft);
-        
+
         socketUse.RecMessage(setMessages)
 
         if (messagesContainerRef.current) {
@@ -41,7 +41,7 @@ export default function ChatBox({ currentRoom, setRoom, timeLeft, setTimer}) {
       socketUse.leaveRoom(currentRoom);
     }
 
-  },[]);
+  }, []);
 
   const handleMessageChange = (e) => {
     setMessage(e.target.value);
@@ -69,7 +69,10 @@ export default function ChatBox({ currentRoom, setRoom, timeLeft, setTimer}) {
       <div className="messages-container" ref={messagesContainerRef}>
         <div className="messages">
           {messages.map((msg, index) => (
-            <p key={index}>{typeof msg.message === 'string' ? msg.message : ''}</p>
+            <p key={index} className={`${msg.username === localStorage.getItem('username') ? 'outgoingMsg' : 'incomingMsg'}`}>
+              <strong>{msg.username}</strong><br />
+              {msg.message}
+            </p>
           ))}
         </div>
       </div>

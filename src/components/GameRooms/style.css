@@ -46,3 +46,23 @@ button {
   margin-right: 10px;
 }
 
+.messages {
+  display: flex;
+  flex-direction: column;
+}
+
+.incomingMsg {
+  border-radius: 20px 20px 20px 0px;
+  border:solid 2px rgb(189, 91, 91);
+  align-self: flex-start;
+  background-color: rgb(255, 124, 124);
+  padding:10px;
+}
+
+.outgoingMsg {
+  border-radius: 20px 20px 0px 20px;
+  border: solid 2px rgb(143, 109, 46);
+  align-self: flex-end;
+  background-color: rgb(207, 157, 64);
+  padding:10px;
+}
