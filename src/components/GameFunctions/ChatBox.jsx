@@ -14,14 +14,17 @@ export default function ChatBox({ currentRoom, setRoom, timeLeft, setTimer }) {
     if (isMounted) {
       // Initialize current score
       localStorage.setItem('currentScore', 0)
+      // const timeLeftRef = useRef(timeLeft);
 
       // Grab current timer value from state
-      const timerVal = timeLeft
+      // const timerVal = timeLeft
 
       // Wrapper function to allow for callback
       const recMessageTimer = () => {
         // Activate socket method for listening for incoming messages
-        socketUse.RecMessage(setMessages, timerVal)
+        console.log(timeLeft);
+
+        socketUse.RecMessage(setMessages)
 
         if (messagesContainerRef.current) {
           // Scroll to the bottom of the messages when new messages are added
@@ -54,6 +57,8 @@ export default function ChatBox({ currentRoom, setRoom, timeLeft, setTimer }) {
       // Send message to socket server
       socketUse.sendMessage(currentRoom, message)
 
+      // setTimerVal(timeLeft);
+
       // setMessages(prevMessages => [...prevMessages, {message: message}]);
       setMessage('');
     }
@@ -64,7 +69,10 @@ export default function ChatBox({ currentRoom, setRoom, timeLeft, setTimer }) {
       <div className="messages-container" ref={messagesContainerRef}>
         <div className="messages">
           {messages.map((msg, index) => (
-            <p key={index}>{typeof msg.message === 'string' ? msg.message : ''}</p>
+            <p key={index} className={`${msg.username === localStorage.getItem('username') ? 'outgoingMsg' : 'incomingMsg'}`}>
+              <strong>{msg.username}</strong><br />
+              {msg.message}
+            </p>
           ))}
         </div>
       </div>
