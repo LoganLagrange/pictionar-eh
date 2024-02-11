@@ -3,7 +3,7 @@ import "../pages/gameroom/style.css"; // Importing CSS styles
 import socketUse from '../utils/socket';
 import API from '../utils/API';
 
-export default function ChatBox({currentRoom, setRoom}) {
+export default function ChatBox({currentRoom, setRoom, timeLeft, setTimer}) {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
   const messagesContainerRef = useRef(null); // Reference to the messages container
@@ -16,7 +16,7 @@ export default function ChatBox({currentRoom, setRoom}) {
     localStorage.setItem('currentScore', 0)
 
     // Grab current timer value from state
-    const timerVal = 10
+    const timerVal = timeLeft
 
     // Wrapper function to allow for callback
     const recMessageTimer = () => {

@@ -11,6 +11,7 @@ export default function Game({ currentRoom, setRoom, getHS, userId, setUserId })
   
   const [drawer, setDrawer] = useState(false);
   const [drawing, setDrawing] = useState()
+  const [timeLeft, setTimer] = useState('');
   // while(secondsLeft>=0){
     useEffect(() => {
       const handleDrawerUpdate = (drawerStatus) => {
@@ -69,7 +70,7 @@ export default function Game({ currentRoom, setRoom, getHS, userId, setUserId })
   return (
     <section style={styles.gamepageStyles} className="section">
       <h2 className='card-title'>PICTIONAR'EH'</h2>
-      <Timer/>
+      <Timer timeLeft={timeLeft} setTimer={setTimer}/>
       <div style={styles.wordDisplay}>
         {/* <p className='card-word'>Your word is: {props.word}</p> */}
       </div>
@@ -85,7 +86,7 @@ export default function Game({ currentRoom, setRoom, getHS, userId, setUserId })
         )}
 
         <div style={styles.chatContainer} className="chat-container">
-          <ChatBox currentRoom={currentRoom} setRoom={setRoom} />
+          <ChatBox currentRoom={currentRoom} setRoom={setRoom} timeLeft={timeLeft} setTimer={setTimer} />
         </div>
       </div>
       <a href="#" className="btn btn-primary">
