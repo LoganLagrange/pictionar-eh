@@ -1,11 +1,12 @@
 # Pictionar-eh
 
 ## Table of Contents
-	- [User Story](#userstory)
-	- [Acceptance Criteria](#acceptancecriteria)
-	- [Description](#description)
-	- [Project Developers](#project-developers)
-	- [Contributing](#contributing)
+[User Story](#userstory)
+[Acceptance Criteria](#acceptancecriteria)
+[Description](#description)
+[Deployed Application](#deployedapplication)
+[Project Developers](#project-developers)
+[Contributing](#contributing)
 	
 ### User Story
 AS A proud CANADIAN,
@@ -31,6 +32,9 @@ This projects inspiration is to educate the rest of the world of the words uniqu
 - Pictionar-eh: This repository contains the application front-end code and uses technologies such as React canvas draw, color, router-dom, rollup, and socket.io client (https://github.com/LoganLagrange/pictionar-eh)
 - Pictionar-eh-api: This repository contains the application middleware and uses technologies such as sequelize, mysql2, express, express-session, bcrypt, cors, connect-session-sequelize, and jsonwebtoken (https://github.com/LoganLagrange/pictionar-eh-api)
 - Pictionar-eh-socket-server: This repository contains the application back-end code and uses technologies such as express, nodemon, cors, dotenv, and socket.io (https://github.com/LoganLagrange/pictionar-eh-socket-server)
+
+### Deployed Application
+https://pictionar-eh.netlify.app/
 
 ### Project Developers
 This was a collaboration project between:
